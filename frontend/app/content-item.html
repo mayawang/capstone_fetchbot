@@ -1,0 +1,13 @@
+<section class="content-container">
+	<i class="fa fa-user fa-2x content-icon"></i>
+	<div class="content-info">
+		<h3 class="heading--name">{{ content.name }}</h3>
+		<div class="content-item"><i class="fa fa-phone"></i> 647-XXX-XXXX</div>
+	</div>
+	<button class="content-action" (click)="starContent(content)">
+		<i class="fa fa-2x" [class.fa-star]="content.star" [class.fa-star-o]="!content.star"></i>
+	</button>
+	<button class="content-action" (click)="removeContent(content)">
+		<i class="fa fa-trash fa-2x"></i>
+	</button>
+</section>

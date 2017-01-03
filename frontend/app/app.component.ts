@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { ContentList } from './content-list.component'
+import { ContentItem } from './content-item.component'
+
 @Component({
   selector: 'my-app',
-  template: '<h1>My First Angular App</h1>'
+  templateUrl: 'app/content-list.html'
 })
 export class AppComponent { }

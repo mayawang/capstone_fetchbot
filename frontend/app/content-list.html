@@ -1,0 +1,14 @@
+<section id="container">
+	<header>
+		<section class="heading-user">
+			<strong>Fetchbot</strong>
+		</section>
+	</header>
+	<input #newContent class="add-contentt" placeholder="Add Content"
+	      (keyup.enter)="addContent(newContent.value); newContent.value='' ">
+	<ul class="content-list">
+	  <li *ngFor="let content of store.contents">
+	  	<!-- <content [content]="content"></content> -->
+	  </li>
+	</ul>
+</section>

@@ -9,17 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
-    function AppComponent() {
+// import { ContentStore } from './content-store';
+// import Content from './content';
+// import { addContent } from './actions';
+var ContentList = (function () {
+    function ContentList() {
     }
-    return AppComponent;
+    return ContentList;
 }());
-AppComponent = __decorate([
+ContentList = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        templateUrl: 'app/content-list.html'
+        selector: 'content-list',
+        templateUrl: 'app/content-list.html',
+        styleUrls: ['app/content-list.css'],
     }),
     __metadata("design:paramtypes", [])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], ContentList);
+exports.ContentList = ContentList;
+//# sourceMappingURL=content-list.component.js.map

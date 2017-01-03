@@ -9,17 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
-    function AppComponent() {
+// import { contentStore, content as contentModel} from './content-store';
+// import { removecontent, starcontent } from './actions';
+var ContentItem = (function () {
+    function ContentItem() {
     }
-    return AppComponent;
+    return ContentItem;
 }());
-AppComponent = __decorate([
+ContentItem = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        templateUrl: 'app/content-list.html'
+        selector: 'content',
+        templateUrl: 'app/content-item.html',
+        styleUrls: ['app/content.css'],
+        changeDetection: core_1.ChangeDetectionStrategy.OnPush
     }),
     __metadata("design:paramtypes", [])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], ContentItem);
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = ContentItem;
+//# sourceMappingURL=content-item.component.js.map
