@@ -1,0 +1,14 @@
+<section class="content-container">
+	<!-- <i class="fa fa-user fa-2x content-icon"></i> -->
+	<div class="content-info">
+		<h3 class="heading--title">{{ content.title }}</h3>
+		<!-- <i class="fa fa-phone"></i> -->
+		<div class="content"> This is the content.</div>
+	</div>
+	<button class="content-action" (click)="likeContent(content)">
+		<i class="fa fa-2x" [class.fa-heart]="content.like" [class.fa-heart-o]="!content.like"></i>
+	</button>
+	<button class="content-action" (click)="removeContent(content)">
+		<i class="fa fa-trash fa-2x"></i>
+	</button>
+</section>
