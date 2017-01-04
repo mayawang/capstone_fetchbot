@@ -20,7 +20,7 @@ export class Content {
     this.store.dispatch(removeContent(content.id));
   }
 
-  likecontent(content) {
+  likeContent(content) {
     this.store.dispatch(likeContent(content.id));
   }
 }
