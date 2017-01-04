@@ -1,4 +1,4 @@
-.contact-action {
+.content-action {
   color: #3F51B5;
   margin-right: 6px;
   background-color: #fff;
@@ -6,21 +6,21 @@
   font-size: 0.8em;
 }
 
-.contact-action:hover {
+.content-action:hover {
   cursor: pointer;
   margin-top: 2px;
 }
 
-.contact-action:focus {
+.content-action:focus {
   outline: none;
 }
 
-.contact-list {
+.content-list {
   margin: 0;
   padding: 0;
 }
 
-.contact-list li {
+.content-list li {
   display: flex;
   align-items: center;
   color: #919191;
@@ -28,7 +28,7 @@
   min-height: 60px;
 }
 
-.contact-icon {
+.content-icon {
   border-radius: 50%;
   float: left;
   margin-left: 10px;
@@ -43,23 +43,23 @@
   margin-bottom: 0;
 }
 
-.contact-info {
+.content-info {
   width: 80%;
 }
 
-.contact-item {
+.content-item {
   display: inline-block;
   font-size: 0.7em;
   padding-top: 5px;
 }
 
-.contact-item .fa {
+.content-item .fa {
   font-size: 1.3em;
   margin-right: 2px;
   margin-left: 2px;
 }
 
-.contact-container {
+.content-container {
   display: flex;
   align-items: center;
   color: #919191;

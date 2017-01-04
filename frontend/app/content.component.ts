@@ -1,7 +1,7 @@
 
 import { Component, Input, ChangeDetectionStrategy} from '@angular/core';
-// import { contentStore, content as contentModel} from './content-store';
-// import { removecontent, starcontent } from './actions';
+import { ContentStore, Content as ContentModel} from './content-store';
+import { removeContent, starContent } from './actions';
 
 @Component({
   selector: 'content',
@@ -11,16 +11,16 @@ import { Component, Input, ChangeDetectionStrategy} from '@angular/core';
 })
 
 export class Content {
-  // @Input()
-  // content: ContentModel;
+  @Input()
+  content: ContentModel;
 
-  // constructor(private store: ContentStore) { }
-  //
-  // removeContent(content) {
-  //   this.store.dispatch(removeContent(content.id));
-  // }
-  //
-  // starcontent(content) {
-  //   this.store.dispatch(starContent(content.id));
-  // }
+  constructor(private store: ContentStore) { }
+
+  removeContent(content) {
+    this.store.dispatch(removeContent(content.id));
+  }
+
+  starcontent(content) {
+    this.store.dispatch(starContent(content.id));
+  }
 }

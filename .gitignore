@@ -9,4 +9,4 @@ node_modules/
 # TypeScript output
 *.js
 *.js.map
-^systemjs.config.js
+!systemjs.config.js

@@ -8,7 +8,7 @@
 	      (keyup.enter)="addContent(newContent.value); newContent.value='' ">
 	<ul class="content-list">
 	  <li *ngFor="let content of store.contents">
-			{{ content.name }}
+			<content [content]="content"></content>
 	  </li>
 	</ul>
 </section>
