@@ -21,9 +21,9 @@ export function removeContent(id: number): IContentAction {
   };
 }
 
-export function starContent(id: number): IContentAction {
+export function likeContent(id: number): IContentAction {
   return {
-    type: 'STAR',
+    type: 'LIKE',
     id
   };
 }

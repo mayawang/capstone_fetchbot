@@ -1,7 +1,7 @@
 
 import { Component, Input, ChangeDetectionStrategy} from '@angular/core';
 import { ContentStore, Content as ContentModel} from './content-store';
-import { removeContent, starContent } from './actions';
+import { removeContent, likeContent } from './actions';
 
 @Component({
   selector: 'content',
@@ -20,7 +20,7 @@ export class Content {
     this.store.dispatch(removeContent(content.id));
   }
 
-  starcontent(content) {
-    this.store.dispatch(starContent(content.id));
+  likecontent(content) {
+    this.store.dispatch(likeContent(content.id));
   }
 }

@@ -8,16 +8,16 @@ export function reducer(state: Immutable.List<ContentModel> = Immutable.List<Con
       return state.push({
         id: action.id,
         name: action.name,
-        star: false
+        like: false
       });
     case 'REMOVE':
       return state.delete(findIndexById());
-    case 'STAR':
+    case 'LIKE':
       return (<any>state).update(findIndexById(), (content) => {
         return {
           id: content.id,
           name: content.name,
-          star: !content.star
+          like: !content.like
         };
       });
     default:

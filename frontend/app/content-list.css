@@ -29,7 +29,7 @@ header {
   border: #fff 2px solid;
 }
 
-.add-contact {
+.add-content {
   border: 1px solid #f1f1f1;
   height: 55px;
   padding: 5px;
@@ -40,15 +40,15 @@ header {
   color: #444;
 }
 
-.add-contact:focus {
+.add-content:focus {
   outline: none;
 }
 
-.contact-list {
+.content-list {
   margin: 0;
   padding: 0;
 }
 
-.contact-list li {
+.content-list li {
   display: block;
 }
