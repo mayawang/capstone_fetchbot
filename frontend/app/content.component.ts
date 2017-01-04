@@ -6,7 +6,7 @@ import { Component, Input, ChangeDetectionStrategy} from '@angular/core';
 @Component({
   selector: 'content',
   templateUrl: 'app/content.html',
-  // styleUrls: ['app/content.css'],
+  styleUrls: ['app/content.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 

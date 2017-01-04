@@ -7,7 +7,7 @@ import { addContent } from './actions';
   selector: 'content-list',
   templateUrl: 'app/content-list.html',
   providers: [ContentStore],
-  // styleUrls: ['app/content-list.css'],
+  styleUrls: ['app/content-list.css'],
   // directives: [Content]
 })
 

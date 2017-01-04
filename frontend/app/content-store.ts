@@ -13,7 +13,6 @@ export class ContentStore {
   store = createStore(reducer, Immutable.List<Content>());
 
   get contents(): Immutable.List<Content> {
-    console.log("got contents")
     return this.store.getState();
   }
 
