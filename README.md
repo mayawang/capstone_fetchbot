@@ -8,13 +8,13 @@ You can train your Fetchbot by marking the article as “like”, “dislike”(
 
 ## Feature Set:
 1. Useable UI:
-  -  user preference gathering
-  -  login
+  -  User Authentication
   -  content display
-2. User Content Stream Service Backend API for frontend
-3. Directable Crawler
+  -  user preference gathering
+2. User Content Stream Service Backend API
+3. Next Content Prediction Directable Crawler
 4. Data processing pipeline
-5. Algorithm and first implementation for content channel generation
+5. Algorithm and first implementation for content recommendation generation
 
 ## Tech Stack:
 - Frontend:

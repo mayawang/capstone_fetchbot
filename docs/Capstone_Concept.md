@@ -14,7 +14,7 @@ You can train your Fetchbot by marking the article as “like”, “dislike”(
 2. User Content Stream Service Backend API for frontend  (1-2 week)
 3. Directable Crawler
 4. Data processing pipeline (4-5 week includes step 3)
-5. Algorithm and first implementation for content channel generation (4 week)
+5. Algorithm and first implementation for content recommendation generation (4 week)
 
 - **Capstone**: Step 1 - 3.
   - Web UI, Database and Crawler MVP implementation - Mock data for now
