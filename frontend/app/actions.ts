@@ -3,14 +3,14 @@ import { Content as ContentModel} from './content-store';
 export interface IContentAction {
   type: string;
   id: number;
-  name?: string;
+  title?: string;
 }
 
-export function addContent(name: string, id: number): IContentAction {
+export function addContent(title: string, id: number): IContentAction {
   return {
     type: 'ADD',
     id,
-    name
+    title
   };
 }
 

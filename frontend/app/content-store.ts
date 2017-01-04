@@ -5,7 +5,7 @@ import { reducer } from './reducer';
 
 export class Content {
   id: number;
-  name: String;
+  title: String;
   like: boolean;
 }
 

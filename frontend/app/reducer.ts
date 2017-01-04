@@ -7,7 +7,7 @@ export function reducer(state: Immutable.List<ContentModel> = Immutable.List<Con
     case 'ADD':
       return state.push({
         id: action.id,
-        name: action.name,
+        title: action.title,
         like: false
       });
     case 'REMOVE':
@@ -16,7 +16,7 @@ export function reducer(state: Immutable.List<ContentModel> = Immutable.List<Con
       return (<any>state).update(findIndexById(), (content) => {
         return {
           id: content.id,
-          name: content.name,
+          title: content.title,
           like: !content.like
         };
       });
