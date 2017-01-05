@@ -11,7 +11,7 @@ You can train your Fetchbot by marking the article as “like”, “dislike”(
   -  user preference gathering
   -  login
   -  content display
-2. User Content Stream Service Backend API for frontend  (1-2 week)
+2. User Content Stream Service API for frontend  (1-2 week)
 3. Directable Crawler
 4. Data processing pipeline (4-5 week includes step 3)
 5. Algorithm and first implementation for content recommendation generation (4 week)
@@ -55,7 +55,7 @@ You can train your Fetchbot by marking the article as “like”, “dislike”(
 - Backend:
   - User Content Stream Service API: [Ruby on Rails](http://rubyonrails.org/)
   - User Preference Content Topic and Knowledge Database: [MySQL](https://www.mysql.com/) or [PostgreSQL](https://www.postgresql.org/)
-  - Next Content Prediction Crawler: Python [Scrapy](https://scrapy.org/)
+  - Next Content Prediction Crawler: Python [Scrapy](https://scrapy.org/) as Crawler and [ScrapyRT](https://github.com/scrapinghub/scrapyrt) as Crawler's HTTP API
 
 ## User Stories:
 
