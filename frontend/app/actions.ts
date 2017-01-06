@@ -4,13 +4,17 @@ export interface IContentAction {
   type: string;
   id: number;
   title?: string;
+  desc?: string;
+  link?: string;
 }
 
-export function addContent(title: string, id: number): IContentAction {
+export function addContent(title: string, id: number, desc: string, link: string): IContentAction {
   return {
     type: 'ADD',
     id,
-    title
+    title,
+    desc,
+    link,
   };
 }
 

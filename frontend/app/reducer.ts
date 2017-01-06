@@ -8,7 +8,9 @@ export function reducer(state: Immutable.List<ContentModel> = Immutable.List<Con
       return state.push({
         id: action.id,
         title: action.title,
-        like: false
+        like: false,
+        desc: action.desc,
+        link: action.link
       });
     case 'REMOVE':
       return state.delete(findIndexById());

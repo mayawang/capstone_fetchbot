@@ -19,6 +19,6 @@ export class ContentList {
 	}
 
   addContent(content) {
-    this.store.dispatch(addContent(content, this.contentID++));
+    this.store.dispatch(addContent(content, this.contentID++, "desc", "link"));
   }
 }
