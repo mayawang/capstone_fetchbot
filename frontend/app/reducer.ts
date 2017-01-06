@@ -19,7 +19,9 @@ export function reducer(state: Immutable.List<ContentModel> = Immutable.List<Con
         return {
           id: content.id,
           title: content.title,
-          like: !content.like
+          like: !content.like,
+          desc: content.desc,
+          link: content.link,
         };
       });
     default:
