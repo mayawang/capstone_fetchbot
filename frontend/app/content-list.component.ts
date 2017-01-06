@@ -27,10 +27,10 @@ export class ContentList {
       var title = item.title[0];
       var link = item.link[0];
       var desc = item.desc[0];
-      this.store.dispatch(addContent(url, this.contentID++, desc, link));
+      this.store.dispatch(addContent(url, title, this.contentID++, desc));
     },err => {
       // Log errors if any
       console.log(err);
-    });
+  })
   }
 }

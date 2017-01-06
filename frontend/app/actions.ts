@@ -1,5 +1,5 @@
 import { Content as ContentModel} from './content-store';
-import { getContent } from './content-service';
+// import { getContent } from './content-service';
 
 export interface IContentAction {
   type: string;
@@ -9,7 +9,7 @@ export interface IContentAction {
   link?: string;
 }
 
-export function addContent(title: string, id: number, desc: string, link: string): IContentAction {
+export function addContent( link: string, title: string, id: number, desc: string ): IContentAction {
   return {
     type: 'ADD',
     id,
