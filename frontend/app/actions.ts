@@ -29,6 +29,6 @@ export function removeContent(id: number): IContentAction {
 export function likeContent(id: number): IContentAction {
   return {
     type: 'LIKE',
-    id
+    id,
   };
 }
