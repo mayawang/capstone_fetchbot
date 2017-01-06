@@ -1,4 +1,5 @@
 import { Content as ContentModel} from './content-store';
+import { getContent } from './content-service';
 
 export interface IContentAction {
   type: string;
