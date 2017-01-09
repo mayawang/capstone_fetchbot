@@ -11,10 +11,19 @@ class PageSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
+
+        items = []
+
+        return self.parse_page(response)
+
+
+
+    def parse_page(self, response):
         item = PagecrawlerItem()
         item['link'] = response.url
         item['title'] = response.xpath('//title/text()').extract()
         item['desc'] = response.xpath('//meta[@name="description"]/@content').extract()
         item['keywords'] = response.xpath('//meta[@name="news_keywords"]/@content').extract()
         item['text'] = response.xpath('//body//p//text()').extract()
+        yield item
         yield item
