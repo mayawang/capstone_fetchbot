@@ -12,5 +12,5 @@ node_modules/
 !systemjs.config.js
 
 # log
-*log
+*.log
 *.pyc
