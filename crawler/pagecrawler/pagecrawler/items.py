@@ -7,12 +7,11 @@
 
 import scrapy
 
-
 class PagecrawlerItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     title = scrapy.Field()
     link = scrapy.Field()
-    desc = scrapy.Field()
+    summary = scrapy.Field()
     keywords = scrapy.Field()
     text = scrapy.Field()

@@ -5,16 +5,16 @@ export interface IContentAction {
   type: string;
   id: number;
   title?: string;
-  desc?: string;
+  summary?: string;
   link?: string;
 }
 
-export function addContent( link: string, title: string, id: number, desc: string ): IContentAction {
+export function addContent( link: string, title: string, id: number, summary: string ): IContentAction {
   return {
     type: 'ADD',
     id,
     title,
-    desc,
+    summary,
     link,
   };
 }
