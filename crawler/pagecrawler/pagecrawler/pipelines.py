@@ -4,8 +4,16 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
+from scrapy.exceptions import DropItem
 
+class DuplicatesPipeline(object):
 
-class PagecrawlerPipeline(object):
+    def __init__(self):
+        self.ids_seen = set()
+
     def process_item(self, item, spider):
-        return item
+        if item['link'] in self.links_seen:
+            raise DropItem("Duplicate item found: %s" % item)
+        else:
+            self.links_seen.add(item['link'])
+            return item

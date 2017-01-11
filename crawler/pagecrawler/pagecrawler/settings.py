@@ -15,6 +15,14 @@ SPIDER_MODULES = ['pagecrawler.spiders']
 NEWSPIDER_MODULE = 'pagecrawler.spiders'
 
 
+DEPTH_LIMIT = 3
+DOWNLOAD_DELAY = 0
+
+ITEM_PIPELINES = {
+    'myproject.pipelines.PricePipeline': 300,
+    'myproject.pipelines.JsonWriterPipeline': 800,
+}
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'pagecrawler (+http://www.yourdomain.com)'
 
