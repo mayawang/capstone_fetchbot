@@ -7,7 +7,7 @@ export class Content {
   id: number;
   title: String;
   like: boolean;
-  desc: String;
+  summary: String;
   link: String;
 }
 

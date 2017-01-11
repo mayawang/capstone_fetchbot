@@ -22,12 +22,15 @@ export class ContentList {
   addContent(url) {
     this.contentService.getContent(url).subscribe(resp => {
       console.log(resp)
-      var items = resp.items;
-      var item = items[0];
-      var title = item.title[0];
-      var link = item.link[0];
-      var desc = item.desc[0];
-      this.store.dispatch(addContent(url, title, this.contentID++, desc));
+      let items = resp.items;
+
+      for (let item of items) {
+        var title = item.title[0];
+        var link = item.link[0];
+        var summary = item.summary[0];
+        this.store.dispatch(addContent(url, title, this.contentID++, summary));
+      }
+
     },err => {
       // Log errors if any
       console.log(err);

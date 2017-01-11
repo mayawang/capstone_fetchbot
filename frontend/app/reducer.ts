@@ -9,7 +9,7 @@ export function reducer(state: Immutable.List<ContentModel> = Immutable.List<Con
         id: action.id,
         title: action.title,
         like: false,
-        desc: action.desc,
+        summary: action.summary,
         link: action.link
       });
     case 'REMOVE':
@@ -20,7 +20,7 @@ export function reducer(state: Immutable.List<ContentModel> = Immutable.List<Con
           id: content.id,
           title: content.title,
           like: !content.like,
-          desc: content.desc,
+          summary: content.summary,
           link: content.link,
         };
       });
