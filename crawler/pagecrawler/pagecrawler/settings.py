@@ -17,11 +17,12 @@ NEWSPIDER_MODULE = 'pagecrawler.spiders'
 DEPTH_LIMIT = 3
 DOWNLOAD_DELAY = 0
 
-ITEM_PIPELINES = [
-    'pagespider.pipelines.DuplicatesPipeline',
-    'pagespider.pipelines.DropSelfPostsPipeline',
-    'pagespider.pipelines.ExtractArticlePipeline',
-]
+ITEM_PIPELINES = {
+    # 'pagespider.pipelines.DuplicatesPipeline',
+    # 'pagespider.pipelines.DropSelfPostsPipeline',
+    # 'pagespider.pipelines.ExtractArticlePipeline',
+    'pagecrawler.pipelines.SaveArticle' : 1,
+}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'pagecrawler (+http://www.yourdomain.com)'

@@ -1,5 +1,4 @@
 import scrapy
-from pagecrawler import documents
 from pagecrawler.items import PagecrawlerItem
 
 class PageSpider(scrapy.Spider):
