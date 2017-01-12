@@ -1,5 +1,4 @@
 import scrapy
-from pagecrawler import documents
 from pagecrawler.items import PagecrawlerItem
 
 class PageSpider(scrapy.Spider):
@@ -18,7 +17,6 @@ class PageSpider(scrapy.Spider):
 
         self.log("==========Scraping:========= " + response.url)
 
-        #
         # present_depth = 0
         # if 'present_depth' in response.meta:
         #     present_depth = response.meta['present_depth']
