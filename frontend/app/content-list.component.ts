@@ -19,16 +19,16 @@ export class ContentList {
 		this.contentID = 0;
 	}
 
-  addContent(url) {
-    this.contentService.getContent(url).subscribe(resp => {
+  addContent(query) {
+    this.contentService.getContent(query).subscribe(resp => {
       console.log(resp)
       let items = resp.items;
 
       for (let item of items) {
-        var title = item.title[0];
-        var link = item.link[0];
-        var summary = item.summary[0];
-        this.store.dispatch(addContent(url, title, this.contentID++, summary));
+        var title = item.title;
+        var link = item.link;
+        var summary = item.summary;
+        this.store.dispatch(addContent(query, title, this.contentID++, summary));
       }
 
     },err => {
