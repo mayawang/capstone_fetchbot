@@ -32,4 +32,11 @@ export class Content {
       console.log(err);
     })
   }
+
+  clickHandler(content) {
+    this.contentService.clickContent(content.id).subscribe(resp => {},err => {
+      // Log errors if any
+      console.log(err);
+    })
+  }
 }

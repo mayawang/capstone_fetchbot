@@ -31,5 +31,9 @@ export class ContentService {
         .map((response) => response.json());
   }
 
+  clickContent(contentId): Observable<any> {
+    return this.http.post( this.baseUrl + 'click' + '?cid=' +  encodeURIComponent(contentId), {})
+        .map((response) => response.json());
+  }
 
 }

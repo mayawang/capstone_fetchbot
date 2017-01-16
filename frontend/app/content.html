@@ -1,7 +1,7 @@
 <section class="content-container">
 	<!-- <i class="fa fa-user fa-2x content-icon"></i> -->
 	<div class="content-info">
-		<h3 class="heading--title"><a href={{content.link}} class="no-underline">{{ content.title }}</a></h3>
+		<h3 class="heading--title"><a href={{content.link}} target="_blank" class="no-underline" (click)="clickHandler(content)">{{ content.title }}</a></h3>
 		<!-- <i class="fa fa-phone"></i> -->
 		<div class="content"> {{ content.summary }}</div>
 	</div>

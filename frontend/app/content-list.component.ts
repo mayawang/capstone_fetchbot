@@ -26,7 +26,7 @@ export class ContentList {
         var title = item.title;
         var link = item.link;
         var summary = item.summary;
-        this.store.dispatch(addContent(query, title, item.id, summary));
+        this.store.dispatch(addContent(link, title, item.id, summary));
       }
 
     },err => {

@@ -23,16 +23,19 @@ class ContentsController < ApplicationController
 
   end
 
-  def clicked
-
+  def click
+    print "clicked"
+    return render :json => {clicked:"yes"}.as_json
   end
 
   def like
-    return render :json => {}.as_json
+    print "liked"
+    return render :json => {liked:"yes"}.as_json
   end
 
   def dislike
-    return render :json => {}.as_json
+    print "disliked"
+    return render :json => {disliked:"yes"}.as_json
   end
 
 end
