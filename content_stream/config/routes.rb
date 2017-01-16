@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   get 'search' => 'contents#search', as: 'search'
   post 'like' => 'contents#like', as: 'like'
-  # get 'show' => 'homepages#show', as: 'show'
+  post 'dislike' => 'contents#dislike', as: 'dislike'
 
 end

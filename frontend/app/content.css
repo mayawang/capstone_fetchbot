@@ -74,3 +74,12 @@
   padding: 10px;
   min-height: 60px;
 }
+
+/*.fade.ng-enter {
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+.fade.ng-enter.ng-enter-active {
+  opacity:1;
+}*/

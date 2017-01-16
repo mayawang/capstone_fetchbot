@@ -5,10 +5,10 @@
 		<!-- <i class="fa fa-phone"></i> -->
 		<div class="content"> {{ content.summary }}</div>
 	</div>
-	<button class="content-action" (click)="likeContent(content)">
+	<button class="content-action" (click)="likeHandler(content)">
 		<i class="fa fa-2x" [class.fa-heart]="content.like" [class.fa-heart-o]="!content.like"></i>
 	</button>
-	<button class="content-action" (click)="removeContent(content)">
+	<button class="content-action" (click)="dislikeHandler(content)">
 		<i class="fa fa-trash fa-2x"></i>
 	</button>
 </section>

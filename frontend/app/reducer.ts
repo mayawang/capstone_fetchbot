@@ -12,18 +12,19 @@ export function reducer(state: Immutable.List<ContentModel> = Immutable.List<Con
         summary: action.summary,
         link: action.link
       });
-    case 'REMOVE':
+    case 'DISLIKE':
       return state.delete(findIndexById());
     case 'LIKE':
-      return (<any>state).update(findIndexById(), (content) => {
-        return {
-          id: content.id,
-          title: content.title,
-          like: !content.like,
-          summary: content.summary,
-          link: content.link,
-        };
-      });
+      return state.delete(findIndexById());
+      // return (<any>state).delete(findIndexById(), (content) => {
+      //   return {
+      //     id: content.id,
+      //     title: content.title,
+      //     like: !content.like,
+      //     summary: content.summary,
+      //     link: content.link,
+      //   };
+      // });
     default:
       return state;
   }

@@ -1,12 +1,13 @@
-
 import { Component, Input, ChangeDetectionStrategy} from '@angular/core';
 import { ContentStore, Content as ContentModel} from './content-store';
-import { removeContent, likeContent } from './actions';
+import { dislikeAction, likeAction } from './actions';
+import { ContentService } from './content-service';
 
 @Component({
   selector: 'content',
   templateUrl: 'app/content.html',
   styleUrls: ['app/content.css'],
+  providers: [ ContentService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
@@ -14,13 +15,21 @@ export class Content {
   @Input()
   content: ContentModel;
 
-  constructor(private store: ContentStore) { }
+  constructor(private store: ContentStore, private contentService: ContentService) { }
 
-  removeContent(content) {
-    this.store.dispatch(removeContent(content.id));
+  likeHandler(content) {
+    this.store.dispatch(likeAction(content.id));
+    this.contentService.likeContent(content.id).subscribe(resp => {},err => {
+      // Log errors if any
+      console.log(err);
+    })
   }
 
-  likeContent(content) {
-    this.store.dispatch(likeContent(content.id));
+  dislikeHandler(content) {
+    this.store.dispatch(dislikeAction(content.id));
+    this.contentService.dislikeContent(content.id).subscribe(resp => {},err => {
+      // Log errors if any
+      console.log(err);
+    })
   }
 }

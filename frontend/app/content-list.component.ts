@@ -13,10 +13,8 @@ import { ContentService } from './content-service';
 })
 
 export class ContentList {
-	contentID: number;
 
 	constructor(private store: ContentStore, private contentService: ContentService) {
-		this.contentID = 0;
 	}
 
   addContent(query) {
@@ -28,12 +26,12 @@ export class ContentList {
         var title = item.title;
         var link = item.link;
         var summary = item.summary;
-        this.store.dispatch(addContent(query, title, this.contentID++, summary));
+        this.store.dispatch(addContent(query, title, item.id, summary));
       }
 
     },err => {
       // Log errors if any
       console.log(err);
-  })
+    })
   }
 }

@@ -26,5 +26,10 @@ export class ContentService {
         .map((response) => response.json());
   }
 
+  dislikeContent(contentId): Observable<any> {
+    return this.http.post( this.baseUrl + 'dislike' + '?cid=' +  encodeURIComponent(contentId), {})
+        .map((response) => response.json());
+  }
+
 
 }
