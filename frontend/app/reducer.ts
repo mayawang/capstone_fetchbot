@@ -16,15 +16,6 @@ export function reducer(state: Immutable.List<ContentModel> = Immutable.List<Con
       return state.delete(findIndexById());
     case 'LIKE':
       return state.delete(findIndexById());
-      // return (<any>state).delete(findIndexById(), (content) => {
-      //   return {
-      //     id: content.id,
-      //     title: content.title,
-      //     like: !content.like,
-      //     summary: content.summary,
-      //     link: content.link,
-      //   };
-      // });
     default:
       return state;
   }

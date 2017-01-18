@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ContentStore } from './content-store';
 import { Content } from './content.component';
-import { addContentAction } from './actions';
+import { addContentAction} from './actions';
 import { ContentService } from './content-service';
 
 @Component({
@@ -17,7 +17,7 @@ export class ContentList {
 	constructor(private store: ContentStore, private contentService: ContentService) {
 	}
 
-  addContentAction(query) {
+  addContentHandler(query) {
     this.contentService.getContent(query).subscribe(resp => {
       console.log(resp)
       let items = resp.items;
