@@ -17,9 +17,12 @@ export class Content {
 
   constructor(private store: ContentStore, private contentService: ContentService) { }
 
+  // mock userId for now
+  userId = '1';
+
   likeHandler(content) {
     this.store.dispatch(likeAction(content.id));
-    this.contentService.likeContent(content.id).subscribe(resp => {},err => {
+    this.contentService.likeContent(content.id, this.userId).subscribe(resp => {},err => {
       // Log errors if any
       console.log(err);
     })
@@ -27,14 +30,14 @@ export class Content {
 
   dislikeHandler(content) {
     this.store.dispatch(dislikeAction(content.id));
-    this.contentService.dislikeContent(content.id).subscribe(resp => {},err => {
+    this.contentService.dislikeContent(content.id, this.userId).subscribe(resp => {},err => {
       // Log errors if any
       console.log(err);
     })
   }
 
   clickHandler(content) {
-    this.contentService.clickContent(content.id).subscribe(resp => {},err => {
+    this.contentService.clickContent(content.id, this.userId).subscribe(resp => {},err => {
       // Log errors if any
       console.log(err);
     })

@@ -17,22 +17,26 @@ export class ContentService {
   }
 
   getContent(query): Observable<any> {
-    return this.http.get( this.baseUrl + 'search' + '?q=' + encodeURIComponent(query))
-        .map((response) => response.json());
+    return this.http.get( this.baseUrl + 'search' + '?q=' +
+    encodeURIComponent(query))
+      .map((response) => response.json());
   }
 
-  likeContent(contentId): Observable<any> {
-    return this.http.post( this.baseUrl + 'like' + '?cid=' +  encodeURIComponent(contentId), {})
-        .map((response) => response.json());
+  likeContent(contentId, userId): Observable<any> {
+    return this.http.post( this.baseUrl + 'like' + '?cid=' +  encodeURIComponent(contentId) + '?uid=' +
+    encodeURIComponent(userId), {})
+      .map((response) => response.json());
   }
 
-  dislikeContent(contentId): Observable<any> {
-    return this.http.post( this.baseUrl + 'dislike' + '?cid=' +  encodeURIComponent(contentId), {})
-        .map((response) => response.json());
+  dislikeContent(contentId, userId): Observable<any> {
+    return this.http.post( this.baseUrl + 'dislike' + '?cid=' +  encodeURIComponent(contentId) + '?uid='+
+    encodeURIComponent(userId), {})
+      .map((response) => response.json());
   }
 
-  clickContent(contentId): Observable<any> {
-    return this.http.post( this.baseUrl + 'click' + '?cid=' +  encodeURIComponent(contentId), {})
+  clickContent(contentId, userId): Observable<any> {
+    return this.http.post( this.baseUrl + 'click' + '?cid=' +  encodeURIComponent(contentId) + '?uid='+
+    encodeURIComponent(userId), {})
         .map((response) => response.json());
   }
 

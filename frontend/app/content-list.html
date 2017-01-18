@@ -5,7 +5,7 @@
 		</div>
 	</header>
 	<input #newContent class="add-content" placeholder="Add Content"
-	      (keyup.enter)="addContent(newContent.value); newContent.value='' ">
+	      (keyup.enter)="addContentAction(newContent.value); newContent.value='' ">
 	<ul class="content-list">
 	  <li *ngFor="let content of store.contents">
 			<content [content]="content"></content>

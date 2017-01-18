@@ -9,7 +9,7 @@ export interface IContentAction {
   link?: string;
 }
 
-export function addContent( link: string, title: string, id: number, summary: string ): IContentAction {
+export function addContentAction( link: string, title: string, id: number, summary: string ): IContentAction {
   return {
     type: 'ADD',
     id,
