@@ -4,8 +4,9 @@ class ContentsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def search
+    query = params[:q] || ''
     response = {
-      items:  RecommendationApiWrapper.get_recommendation(params[:q])
+      items:  RecommendationApiWrapper.get_recommendation(query)
     }
     return render :json => response.as_json
   end

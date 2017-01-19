@@ -5,11 +5,13 @@ import { Content } from './content.component';
 
 import 'rxjs/add/operator/map'
 
+var API_SERVER = 'localhost:9980';
+
 @Injectable()
 export class ContentService {
   // private baseUrl: string = 'http://localhost:9080/crawl.json?spider_name=pagespider&url='
 
-  private baseUrl: string = 'http://localhost:9980/'
+  private baseUrl: string = 'http://' + API_SERVER + '/'
 
 
   constructor(private http: Http) {
