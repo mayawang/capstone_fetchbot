@@ -23,19 +23,19 @@ export class ContentService {
   }
 
   likeContent(contentId, userId): Observable<any> {
-    return this.http.post( this.baseUrl + 'like' + '?cid=' +  encodeURIComponent(contentId) + '?uid=' +
+    return this.http.post( this.baseUrl + 'like' + '?cid=' +  encodeURIComponent(contentId) + '&uid=' +
     encodeURIComponent(userId), {})
       .map((response) => response.json());
   }
 
   dislikeContent(contentId, userId): Observable<any> {
-    return this.http.post( this.baseUrl + 'dislike' + '?cid=' +  encodeURIComponent(contentId) + '?uid='+
+    return this.http.post( this.baseUrl + 'dislike' + '?cid=' +  encodeURIComponent(contentId) + '&uid='+
     encodeURIComponent(userId), {})
       .map((response) => response.json());
   }
 
   clickContent(contentId, userId): Observable<any> {
-    return this.http.post( this.baseUrl + 'click' + '?cid=' +  encodeURIComponent(contentId) + '?uid='+
+    return this.http.post( this.baseUrl + 'click' + '?cid=' +  encodeURIComponent(contentId) + '&uid='+
     encodeURIComponent(userId), {})
         .map((response) => response.json());
   }

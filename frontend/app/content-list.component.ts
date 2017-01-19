@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
 import { ContentStore } from './content-store';
 import { Content } from './content.component';
 import { addContentAction} from './actions';
 import { ContentService } from './content-service';
+import {
+  Component,
+} from '@angular/core';
 
 @Component({
   selector: 'content-list',
