@@ -11,15 +11,25 @@ class ContentsController < ApplicationController
   end
 
   def click
-    return render :json => {clicked:"yes", user: params[:uid]}.as_json
+    # @user = User.new
+    # @user.id = params[:uid]
+    # @content = Content.new
+    # @content.user_id = params[:uid]
+    #
+    # @user.save
   end
 
   def like
-    return render :json => {liked:"yes", user: params[:uid]}.as_json
+    response = {
+      items:  RecommendationApiWrapper.like(params[:cid], params[:uid])
+    }
+    return render :json => response.as_json
   end
 
   def dislike
-    return render :json => {disliked:"yes", user:params[:uid]}.as_json
+    response = {
+      items:  RecommendationApiWrapper.dislike(params[:cid], params[:uid])
+    }
+    return render :json => response.as_json
   end
-
 end
