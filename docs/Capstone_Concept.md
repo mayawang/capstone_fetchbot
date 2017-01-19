@@ -54,8 +54,10 @@ You can train your Fetchbot by marking the article as “like”, “dislike”(
   - User Authentication: [OAuth](https://oauth.net/)
 - Backend:
   - User Content Stream Service API: [Ruby on Rails](http://rubyonrails.org/)
-  - User Preference Content Topic and Knowledge Database: [MySQL](https://www.mysql.com/) or [PostgreSQL](https://www.postgresql.org/)
-  - Next Content Prediction Crawler: Python [Scrapy](https://scrapy.org/) as Crawler and [ScrapyRT](https://github.com/scrapinghub/scrapyrt) as Crawler's HTTP API
+  - User Preference Database: [MySQL](https://www.mysql.com/)
+  - Content Recommendation: [Flask](http://flask.pocoo.org/) + [surprise]:(http://surpriselib.com/)
+  - Crawler: Python [Scrapy](https://scrapy.org/) as Crawler and [ScrapyRT](https://github.com/scrapinghub/scrapyrt) as Crawler's HTTP API
+  - Scrapted Content Database: [MySQL](https://www.mysql.com/)
 
 ## User Stories:
 
