@@ -127,3 +127,45 @@ You can train your Fetchbot by marking the article as “like”, “dislike”(
 
 ## Learn More:
 - [User Stories/UI Specifications/Content Recommendation Algorithm](https://docs.google.com/document/d/1J1pocwXkKDzZwVS_ZiXdaghuYcgFfSkFei5TbseqJts/edit?usp=sharing)
+
+
+## script:
+
+- sign in and choose interested topic/rss?
+- integrate with google/github/facebook account?
+- select the like source? five or four example
+
+- sign-in? query specify user1 in params[:q]
+q=1, user=1
+
+- open the main page
+- type in search term "asimov laws of robotics"
+- return 5 recommendation of articles
+- namely:
+1.Do We Need Asimov's Laws? https://www.technologyreview.com/s/527336/do-we-need-asimovs-laws/
+
+2. The Three Laws of Robotics - xkcd
+https://xkcd.com/1613/
+
+
+3. The Myth of the Three Laws of Robotics – Why We Can’t Control Intelligence
+https://singularityhub.com/2011/05/10/the-myth-of-the-three-laws-of-robotics-why-we-cant-control-intelligence/
+
+4. The dawn of artificial intelligence "http://www.economist.com/news/leaders/21650543-powerful-computers-will-reshape-humanitys-future-how-ensure-promise-outweighs"
+
+5. Paul Allen: The Singularity Isn't Near
+
+https://www.technologyreview.com/s/425733/paul-allen-the-singularity-isnt-near/
+
+- like an article, another similar new article will appear(article in same website or related topic)
+
+- dislike an article, another new article will appear in complete different field:
+namely:
+
+1. Oscar Wilde and Walt Whitman Once Spent an Afternoon Together. Here's What Happened
+
+https://newrepublic.com/article/119885/when-walt-whitman-met-oscar-wilde
+
+- when feed in a link, it can return similar links
+
+- copy an URL, link to crawler

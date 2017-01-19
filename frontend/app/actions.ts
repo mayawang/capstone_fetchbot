@@ -9,7 +9,7 @@ export interface IContentAction {
   link?: string;
 }
 
-export function addContent( link: string, title: string, id: number, summary: string ): IContentAction {
+export function addContentAction( link: string, title: string, id: number, summary: string ): IContentAction {
   return {
     type: 'ADD',
     id,
@@ -19,14 +19,14 @@ export function addContent( link: string, title: string, id: number, summary: st
   };
 }
 
-export function removeContent(id: number): IContentAction {
+export function dislikeAction(id: number): IContentAction {
   return {
-    type: 'REMOVE',
+    type: 'DISLIKE',
     id
   };
 }
 
-export function likeContent(id: number): IContentAction {
+export function likeAction(id: number): IContentAction {
   return {
     type: 'LIKE',
     id,

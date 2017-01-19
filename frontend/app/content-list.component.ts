@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
 import { ContentStore } from './content-store';
 import { Content } from './content.component';
-import { addContent } from './actions';
+import { addContentAction} from './actions';
 import { ContentService } from './content-service';
+import {
+  Component,
+} from '@angular/core';
 
 @Component({
   selector: 'content-list',
@@ -13,27 +15,25 @@ import { ContentService } from './content-service';
 })
 
 export class ContentList {
-	contentID: number;
 
 	constructor(private store: ContentStore, private contentService: ContentService) {
-		this.contentID = 0;
 	}
 
-  addContent(url) {
-    this.contentService.getContent(url).subscribe(resp => {
+  addContentHandler(query) {
+    this.contentService.getContent(query).subscribe(resp => {
       console.log(resp)
       let items = resp.items;
 
       for (let item of items) {
-        var title = item.title[0];
-        var link = item.link[0];
-        var summary = item.summary[0];
-        this.store.dispatch(addContent(url, title, this.contentID++, summary));
+        var title = item.title;
+        var link = item.link;
+        var summary = item.summary;
+        this.store.dispatch(addContentAction(link, title, item.id, summary));
       }
 
     },err => {
       // Log errors if any
       console.log(err);
-  })
+    })
   }
 }
