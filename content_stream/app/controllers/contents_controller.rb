@@ -21,6 +21,30 @@ class ContentsController < ApplicationController
   end
 
   def like
+
+    user = User.find(params[:uid])
+
+    content = Content.new(
+      :title => RecommendationApiWrapper.like(params[:cid], params[:uid])[:title],
+      :link => RecommendationApiWrapper.like(params[:cid], params[:uid])[:link],
+      :summary => RecommendationApiWrapper.like(params[:cid], params[:uid])[:summary],
+      :keywords => RecommendationApiWrapper.like(params[:cid], params[:uid])[:keywords],
+      :text => RecommendationApiWrapper.like(params[:cid], params[:uid])[:text],
+      :user_id => params[:uid],
+      :cid => params[:cid],
+      :content.article_id => params[:id],
+      :rates => 0
+    )
+
+    content.save
+    user.save
+
+    if user.like(content)
+      head :ok
+    else
+      head :unprocessable_entity
+    end
+
     response = {
       items:  RecommendationApiWrapper.like(params[:cid], params[:uid])
     }
@@ -28,6 +52,30 @@ class ContentsController < ApplicationController
   end
 
   def dislike
+
+    user = User.find(params[:uid])
+
+    content = Content.new(
+      :title => RecommendationApiWrapper.dislike(params[:cid], params[:uid])[:title],
+      :link => RecommendationApiWrapper.dislike(params[:cid], params[:uid])[:link],
+      :summary => RecommendationApiWrapper.dislike(params[:cid], params[:uid])[:summary],
+      :keywords => RecommendationApiWrapper.dislike(params[:cid], params[:uid])[:keywords],
+      :text => RecommendationApiWrapper.dislike(params[:cid], params[:uid])[:text],
+      :user_id => params[:uid],
+      :cid => params[:cid],
+      :content.article_id => params[:id],
+      :rates => 0
+    )
+
+    if user.dislike(content)
+      head :ok
+    else
+      head :unprocessable_entity
+    end
+
+    content.save
+    user.save
+
     response = {
       items:  RecommendationApiWrapper.dislike(params[:cid], params[:uid])
     }
