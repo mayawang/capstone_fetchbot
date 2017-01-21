@@ -1,7 +1,26 @@
 require 'httparty'
 
 class RecommendationApiWrapper
-  def self.get_recommendation(query)
+  def self.get_recommendation(user_id, query)
+    user = User.find_by_id(user_id)
+    unless user
+      puts "unable to find user #{user_id}"
+      return []
+    end
+
+    recommended = user.recommended_articles
+    if recommended.length > 0
+      return recommended
+    end
+
+    puts "NO RECOMMENDATION!!!! return an random article"
+    # if no recommandation, return random articles
+    offset = rand(Article.count)
+    return [
+      Article.offset(offset).first
+    ]
+  end
+=begin
     items = []
     if "asimov laws of robotics".include?(query)
       item_1 = {
@@ -56,8 +75,8 @@ class RecommendationApiWrapper
       items << item_5
 
       return items
-    end
-  end
+=end
+
 
   # like/dislike and clicked with user saved both in rails database and recommendation database
   # like => 1
@@ -67,7 +86,12 @@ class RecommendationApiWrapper
 
   end
 
-  def self.like(content_id, user_id)
+  def self.like(article_id, user_id)
+    article = Article.find_by_id(article_id)
+    user = User.find_by_id(user_id)
+    user.like(article)
+    return user.recommended_articles
+=begin
     item_6 = {
       id: '6',
       title: "What Better Way for the Marines to Prepare for Future Wars Than With Sci-Fi?",
@@ -78,10 +102,15 @@ class RecommendationApiWrapper
     }
 
     return [item_6]
-
+=end
   end
 
-  def self.dislike(content_id, user_id)
+  def self.dislike(article_id, user_id)
+    article = Article.find_by_id(article_id)
+    user = User.find_by_id(user_id)
+    user.dislike(article)
+    return user.recommended_articles
+=begin
       item_7 = {
       id: '7',
       title: "Oscar Wilde and Walt Whitman Once Spent an Afternoon Together. Here's What Happened",
@@ -92,7 +121,6 @@ class RecommendationApiWrapper
     }
 
     return [item_7]
+=end
   end
-
-
 end
