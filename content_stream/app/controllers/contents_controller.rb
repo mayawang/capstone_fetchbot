@@ -4,8 +4,18 @@ class ContentsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def search
+    query = params[:q] || ''
+    user_id = params[:uid] || 1
+
+    recommended_articles = RecommendationApiWrapper.get_recommendation(user_id, query)
+    items = []
+    recommended_articles.each do |recommended_article|
+      content = ensure_content(user_id, recommended_article)
+      items << content.to_frontend_hash
+    end
+
     response = {
-      items:  RecommendationApiWrapper.get_recommendation(params[:q])
+      items: items
     }
     return render :json => response.as_json
   end
@@ -20,16 +30,99 @@ class ContentsController < ApplicationController
   end
 
   def like
-    response = {
-      items:  RecommendationApiWrapper.like(params[:cid], params[:uid])
-    }
-    return render :json => response.as_json
+    user_id = params[:uid]
+    content_id = params[:cid]
+
+    content = Content.find_by_id(content_id)
+
+    unless content
+      puts "Unable to find content #{content_id}"
+      return render :json => {item: []}.as_json
+    end
+
+    content.rates = Content::RATE_LIKE
+    content.save
+
+    return like_dislike_helper(user_id, content_id, true)
   end
 
   def dislike
+    user_id = params[:uid]
+    content_id = params[:cid]
+
+    content = Content.find_by_id(content_id)
+
+    unless content
+      puts "Unable to find content #{content_id}"
+      return render :json => {item: []}.as_json
+    end
+
+    content.rates = Content::RATE_DISLIKE
+    content.save
+
+    return like_dislike_helper(user_id, content_id, false)
+  end
+
+  def ensure_content(user_id, article)
+    puts "ensure content for user_id #{user_id} #{article}"
+    existing_content = Content.where({
+      user_id: user_id,
+      article_id: article.id,
+    }).first
+
+    return existing_content if existing_content
+
+    return Content.create({
+      user_id:      user_id,
+      article_id:   article.id,
+      title:        article.title,
+      link:         article.link,
+      summary:      article.summary,
+      keywords:     article.keywords,
+      text:         article.text,
+    })
+  end
+
+  def like_dislike_helper(user_id, content_id, is_like)
+    user = User.find_by_id(user_id)
+
+    unless user
+      puts "Unable to find user #{user_id}"
+      return []
+    end
+
+    article_id = content.article_id
+
+    unless article_id
+      puts "content #{content_id} does not have article_id"
+      content.delete
+      return []
+    end
+
+
+    if is_like
+      recommended_articles = RecommendationApiWrapper.like(article_id, user_id)
+    else
+      recommended_articles = RecommendationApiWrapper.dislike(article_id, user_id)
+    end
+
+    items = []
+    recommended_articles.each do |recommended_article|
+      puts "================================"
+      puts recommended_article.inspect
+      # create a new content for this user
+      content = ensure_content(user_id, recommended_article)
+      items << content.to_frontend_hash
+    end
+
     response = {
-      items:  RecommendationApiWrapper.dislike(params[:cid], params[:uid])
+      items: items
     }
+
     return render :json => response.as_json
+  end
+
+  def recommendations
+
   end
 end

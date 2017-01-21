@@ -86,7 +86,7 @@ export class Content {
         // Log errors if any
         console.log(err);
       })
-    }, 2000 );
+    }, 200 );
   }
 
   clickHandler(content) {
