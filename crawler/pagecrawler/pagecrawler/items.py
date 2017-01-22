@@ -15,3 +15,13 @@ class PagecrawlerItem(scrapy.Item):
     summary = scrapy.Field()
     keywords = scrapy.Field()
     text = scrapy.Field()
+
+
+class ArticlecrawlerItem(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
+    title = scrapy.Field()
+    link = scrapy.Field()
+    summary = scrapy.Field()
+    keywords = scrapy.Field()
+    text = scrapy.Field()
