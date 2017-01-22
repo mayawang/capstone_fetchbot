@@ -16,8 +16,21 @@ class Articles(Model):
     class Meta:
         database = db
 
+
+class Articles2(Model):
+    title = CharField()
+    link = CharField()
+    summary = CharField()
+    keywords = CharField()
+    text = CharField()
+    created_at = DateTimeField(default=datetime.datetime.now)
+    updated_at = DateTimeField(default=datetime.datetime.now)
+
+    class Meta:
+        database = db
+
 if __name__ == "__main__":
     try:
-        Articles.create_table()
+        Articles2.create_table()
     except OperationalError:
         print "Article table already exists!"
