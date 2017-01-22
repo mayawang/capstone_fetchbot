@@ -6,7 +6,7 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from scrapy.exceptions import DropItem
 # from goose import Goose
-from pagecrawler.model_article import Article
+from pagecrawler.model_article import Articles
 
 class SaveArticle(object):
 
@@ -19,7 +19,7 @@ class SaveArticle(object):
         keywords = item['keywords']
         text = item['text']
 
-        article = Article.create(title=title, link=link, summary=summary, keywords=keywords, text=text)
+        article = Articles.create(title=title, link=link, summary=summary, keywords=keywords, text=text)
 
         return item
 # class DuplicatesPipeline(object):
