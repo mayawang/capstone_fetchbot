@@ -46,7 +46,7 @@ export class Content {
   constructor(private store: ContentStore, private contentService: ContentService) { }
 
   // mock userId for now
-  userId = '1';
+  userId = '242';
 
   likeHandler(content) {
     this.store.dispatch(likeAction(content.id));

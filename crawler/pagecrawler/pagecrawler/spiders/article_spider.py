@@ -7,7 +7,7 @@ class ArticleSpider(scrapy.Spider):
     filename = "delicious_article_dataset.dat"
     # load url in bookmarks from dataset
     start_urls = []
-    url_count = 10
+    # url_count = 10
 
     with open(filename, 'r') as f:
         for row in f:
@@ -34,10 +34,10 @@ class ArticleSpider(scrapy.Spider):
         item = ArticlecrawlerItem()
 
         item['link'] = response.url
-        item['title'] = response.xpath('//title/text()').extract()
-        item['summary'] = response.xpath('//meta[@name="description"]/@content').extract()
-        item['keywords'] = response.xpath('//meta[@name="news_keywords"]/@content').extract()
-        item['text'] = response.xpath('//body//p//text()').extract()
+        item['title'] = response.xpath('//title/text()').extract()[0]
+        item['summary'] = response.xpath('//meta[@name="description"]/@content').extract()[0]
+        item['keywords'] = response.xpath('//meta[@name="news_keywords"]/@content').extract()[0]
+        item['text'] = response.xpath('//body//p//text()').extract()[0]
         self.log("=========filled in item for:========" + response.url)
 
         # e.g. "indexing function", link = item.[]('link')
