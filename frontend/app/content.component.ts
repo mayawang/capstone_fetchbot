@@ -52,7 +52,7 @@ export class Content {
     this.store.dispatch(likeAction(content.id));
     this.contentService.likeContent(content.id, this.userId).subscribe(resp => {
       console.log(resp)
-      let items = resp.items;
+      let items = resp.items.slice(0,1);
 
       for (let item of items) {
         var title = item.title;
@@ -73,7 +73,7 @@ export class Content {
     setTimeout( () => {
       this.contentService.dislikeContent(content.id, this.userId).subscribe(resp => {
         console.log(resp)
-        let items = resp.items;
+        let items = resp.items.slice(0,1);
 
         for (let item of items) {
           var title = item.title;
@@ -86,7 +86,7 @@ export class Content {
         // Log errors if any
         console.log(err);
       })
-    }, 200 );
+    }, 100 );
   }
 
   clickHandler(content) {
