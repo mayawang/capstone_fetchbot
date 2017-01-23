@@ -122,7 +122,4 @@ class ContentsController < ApplicationController
     return render :json => response.as_json
   end
 
-  def recommendations
-
-  end
 end
