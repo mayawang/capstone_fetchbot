@@ -22,7 +22,7 @@ export class ContentList {
   addContentHandler(query) {
     this.contentService.getContent(query).subscribe(resp => {
       console.log(resp)
-      let items = resp.items;
+      let items = resp.items.slice(0,3);
 
       for (let item of items) {
         var title = item.title;

@@ -5,7 +5,7 @@ class ContentsController < ApplicationController
 
   def search
     query = params[:q] || ''
-    user_id = params[:uid] || 1
+    user_id = params[:uid] || 242
 
     recommended_articles = RecommendationApiWrapper.get_recommendation(user_id, query)
     items = []
@@ -84,6 +84,16 @@ class ContentsController < ApplicationController
   end
 
   def like_dislike_helper(user_id, content_id, is_like)
+
+    User.find_each do |user|
+      user_id = user.id
+    end
+
+    user_id = params[:uid]
+    content_id = params[:cid]
+
+    content = Content.find_by_id(content_id)
+
     user = User.find_by_id(user_id)
 
     unless user
@@ -106,6 +116,10 @@ class ContentsController < ApplicationController
       recommended_articles = RecommendationApiWrapper.dislike(article_id, user_id)
     end
 
+    puts "recommended_articles: #{recommended_articles.inspect}"
+    puts "user: #{user.id}"
+
+
     items = []
     recommended_articles.each do |recommended_article|
       puts "================================"
@@ -122,7 +136,4 @@ class ContentsController < ApplicationController
     return render :json => response.as_json
   end
 
-  def recommendations
-
-  end
 end
