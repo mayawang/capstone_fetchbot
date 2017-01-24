@@ -6,7 +6,7 @@ class ContentsController < ApplicationController
   def search
     query = params[:q] || ''
     user_id = params[:uid] || 242
-    test_mode = param[:test]
+    test_mode = params[:test]
 
     if test_mode == "random"
       offset = rand(Article.count)
