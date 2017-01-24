@@ -8,12 +8,12 @@ class RecommendationApiWrapper
       return []
     end
 
-    title_matched = Article.where('title LIKE ?', "%query%")
+    title_matched = Article.where('title LIKE ?', "%#{query}%")
     if title_matched
       return title_matched
     end
 
-    text_matched = Article.where('text LIKE ?', "%query%")
+    text_matched = Article.where('text LIKE ?', "%#{query}%")
     if text_matched
       return title_matched
     end
