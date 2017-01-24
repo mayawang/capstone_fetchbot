@@ -130,7 +130,8 @@ class RecommendationApiWrapper
   def self.dislike(article_id, user_id)
     article = Article.find_by_id(article_id)
     user = User.find_by_id(user_id)
-    user.dislike(article)
+    # user.dislike(article)
+    user.hide(article)
     Recommendable::Helpers::Calculations.update_similarities_for(user.id.to_s)
     Recommendable::Helpers::Calculations.update_recommendations_for(user.id.to_s)
     return user.recommended_articles
