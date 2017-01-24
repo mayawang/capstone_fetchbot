@@ -52,7 +52,7 @@ export class Content {
     this.store.dispatch(likeAction(content.id));
     this.contentService.likeContent(content.id, this.userId).subscribe(resp => {
       console.log(resp)
-      let items = resp.items.slice(0,1);
+      let items = resp.items.slice(2,3);
 
       for (let item of items) {
         var title = item.title;
@@ -70,23 +70,24 @@ export class Content {
   dislikeHandler(content) {
     this.store.dispatch(dislikeAction(content.id));
 
-    setTimeout( () => {
-      this.contentService.dislikeContent(content.id, this.userId).subscribe(resp => {
-        console.log(resp)
-        let items = resp.items.slice(0,1);
+    this.contentService.dislikeContent(content.id, this.userId).subscribe(resp => {
+      console.log(resp)
 
-        for (let item of items) {
-          var title = item.title;
-          var link = item.link;
-          var summary = item.summary;
-          this.store.dispatch(addContentAction(link, title, item.id, summary));
-        }
+      let items = resp.items.slice(3,4);
 
-      },err => {
-        // Log errors if any
-        console.log(err);
-      })
-    }, 100 );
+      for (let item of items) {
+        var title = item.title;
+        var link = item.link;
+        var summary = item.summary;
+        this.store.dispatch(addContentAction(link, title, item.id, summary));
+      }
+
+    },err => {
+      // Log errors if any
+      console.log(err);
+    })
+
+    // setTimeout( () => {}, 100 );
   }
 
   clickHandler(content) {

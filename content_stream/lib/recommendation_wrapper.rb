@@ -8,17 +8,29 @@ class RecommendationApiWrapper
       return []
     end
 
+    title_matched = Article.where('title LIKE ?', "%query%")
+    if title_matched
+      return title_matched
+    end
+
+    text_matched = Article.where('text LIKE ?', "%query%")
+    if text_matched
+      return title_matched
+    end
+
+    puts "NO RECOMMENDATION!!!! return an normal recommandation article"
+    # if no recommandation, return based on keywords search
+
     recommended = user.recommended_articles
     if recommended.length > 0
       return recommended
     end
 
-    puts "NO RECOMMENDATION!!!! return an random article"
-    # if no recommandation, return random articles
-    offset = rand(Article.count)
-    return [
-      Article.offset(offset).first
-    ]
+
+    # offset = rand(Article.count)
+    # return [
+    #   Article.offset(offset).first
+    # ]
   end
 =begin
     items = []
