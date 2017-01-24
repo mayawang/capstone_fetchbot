@@ -17,7 +17,13 @@ export function reducer(state: Immutable.List<ContentModel> = Immutable.List<Con
     case 'DISLIKE':
       return state.delete(findIndexById());
     case 'LIKE':
+      // return state.delete(findIndexById());
+      return state.update(findIndexById(), (value) => {
+        return {...value, like: true};
+      });
+    case 'DELETE':
       return state.delete(findIndexById());
+
     default:
       return state;
   }
