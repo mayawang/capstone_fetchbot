@@ -19,7 +19,7 @@ class SaveArticle(object):
         keywords = item['keywords']
         text = item['text']
 
-        article = Articles.create(title=title, link=link, summary=summary, keywords=keywords, text=text)
+        # article = Articles.create(title=title, link=link, summary=summary, keywords=keywords, text=text)
 
         return item
 # class DuplicatesPipeline(object):
