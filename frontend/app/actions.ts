@@ -32,3 +32,10 @@ export function likeAction(id: number): IContentAction {
     id,
   };
 }
+
+export function skipAction(id: number): IContentAction {
+  return {
+    type: 'SKIP',
+    id,
+  };
+}
