@@ -1,7 +1,7 @@
 from peewee import *
 import datetime
 
-# db = SqliteDatabase('articles.db')
+# db = SqliteDatabase('test_fetchbot_articles.db')
 db = SqliteDatabase('/Users/mengyao/capstone_fetchbot/content_stream/db/development.sqlite3')
 
 class Articles(Model):
@@ -31,6 +31,6 @@ class Articles2(Model):
 
 if __name__ == "__main__":
     try:
-        Articles2.create_table()
+        Articles.create_table()
     except OperationalError:
         print "Article table already exists!"
