@@ -1,5 +1,6 @@
-.content-action {
-  color: #3F51B5;
+.content-action-like, .content-action-dislike {
+  /*color: #3F51B5;*/
+  color: #39423d;
   margin-right: 6px;
   background-color: #fff;
   border-radius: 5px;
@@ -7,18 +8,16 @@
   border: 0;
 }
 
-.content-action:hover {
+.content-action-like {
+  color: #ef3232;
+}
+.content-action-like:hover, .content-action-dislike:hover {
   cursor: pointer;
   margin-top: 2px;
 }
 
-.content-action:focus {
+.content-action-like:focus, .content-action-dislike:focus {
   outline: none;
-}
-
-.content-list {
-  margin: 0;
-  padding: 0;
 }
 
 .content-list li {
@@ -37,13 +36,21 @@
   margin-right: 10px;
 }*/
 
-.heading--title {
-  color: #444;
+a {
+  color: inherit;
+}
+
+.heading--title a{
+  /*color: #254441;*/
+  color: #28464B;
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
   margin-left: 0.3vw;
+}
 
+.heading--title :hover{
+  color: #59C9A5;
 }
 
 .no-underline{

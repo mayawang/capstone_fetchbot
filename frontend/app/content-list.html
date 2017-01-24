@@ -4,7 +4,7 @@
 			<strong>Fetchbot</strong>
 		</div>
 	</header>
-	<input #newContent class="add-content" placeholder="Add Content"
+	<input #newContent class="add-content" placeholder="Something to read?"
 	      (keyup.enter)="addContentHandler(newContent.value); newContent.value='' ">
 	<ul class="content-list">
 	  <li *ngFor="let content of store.contents">

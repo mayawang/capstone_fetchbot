@@ -1,7 +1,7 @@
 header {
-  background-color: #3F51B5;
+  background-color: #59C9A5;
   color: #fff;
-  padding: 20px;
+  padding: 30px;
   box-shadow: 0 2px 2px -2px #444;
 }
 
@@ -22,12 +22,12 @@ header {
   margin-right: 15px;
   width: 10%;
 }
-
+/*
 .user img {
   width: 40px;
   border-radius: 50%;
   border: #fff 2px solid;
-}
+}*/
 
 .add-content {
   border: 1px solid #f1f1f1;
