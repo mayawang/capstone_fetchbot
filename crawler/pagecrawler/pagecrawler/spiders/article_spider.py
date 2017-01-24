@@ -10,6 +10,7 @@ class ArticleSpider(scrapy.Spider):
     crawled_urls = {}
     # url_count = 100
     counter = 0
+    written_counter = 0
 
     with open(filename, 'r') as f:
         for row in f:
@@ -80,6 +81,7 @@ class ArticleSpider(scrapy.Spider):
             return
 
         print "createing article"
+        ArticleSpider.written_counter += 1
         article = Articles.create(title=title, link=link, summary=summary, keywords=keywords, text=text)
-        print "#################################" + str(ArticleSpider.counter) + "/" + str(len(ArticleSpider.start_urls)) + "###########################"
+        print "########################### " + str(ArticleSpider.counter) + "/" + str(len(ArticleSpider.start_urls)) + " written " + str(ArticleSpider.written_counter) +  "  #################################"
         # yield item
