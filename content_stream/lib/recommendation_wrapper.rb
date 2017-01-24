@@ -10,12 +10,12 @@ class RecommendationApiWrapper
 
     title_matched = Article.where('title LIKE ?', "%#{query}%")
     if title_matched
-      return title_matched
+      return title_matched[0,3]
     end
 
     text_matched = Article.where('text LIKE ?', "%#{query}%")
     if text_matched
-      return title_matched
+      return title_matched[0,3]
     end
 
     puts "NO RECOMMENDATION!!!! return an normal recommandation article"
