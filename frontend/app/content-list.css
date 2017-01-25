@@ -5,6 +5,10 @@ header {
   box-shadow: 0 2px 2px -2px #444;
 }
 
+.heading-user strong{
+  font-size: 1.5vw;
+}
+
 #container {
   width: 440px;
   display: block;

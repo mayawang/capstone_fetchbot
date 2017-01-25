@@ -19,9 +19,9 @@ File.foreach(user_bookmark_file) do |f|
 
   line_number += 1
 
-  if line_number < 80360
-    next
-  end
+  # if line_number < 80360
+  #   next
+  # end
 
   user_id = row[0].to_i
   if user_id_map[user_id]
