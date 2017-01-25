@@ -1,3 +1,6 @@
+<input #userIdInput class="add-content" placeholder="Who do you want to be today?"
+		(keyup.enter)="changeUserHandler(userIdInput.value); ">
+
 <section id="container">
 	<header>
 		<div class="heading-user">
@@ -5,10 +8,11 @@
 		</div>
 	</header>
 	<input #newContent class="add-content" placeholder="Something to read?"
-	      (keyup.enter)="addContentHandler(newContent.value); newContent.value='' ">
-	<ul class="content-list">
-	  <li *ngFor="let content of store.contents">
-			<content [content]="content"></content>
-	  </li>
-	</ul>
+      (keyup.enter)="addContentHandler(newContent.value); newContent.value='' ">
+		<ul class="content-list">
+		  <li *ngFor="let content of store.contents">
+				<content [content]="content"></content>
+		  </li>
+		</ul>
+
 </section>

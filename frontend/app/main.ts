@@ -3,7 +3,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 // The app module
 import { AppModule } from './app.module';
 
-import { ContentList } from './content-list.component';
+// import { ContentList } from './content-list.component';
+
 // import { Content } from './content.component';
 
 // Compile and launch the module

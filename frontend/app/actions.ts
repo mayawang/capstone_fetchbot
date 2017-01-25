@@ -19,10 +19,10 @@ export function addContentAction( link: string, title: string, id: number, summa
   };
 }
 
-export function dislikeAction(id: number): IContentAction {
+export function deleteContentAction(id: number): IContentAction {
   return {
-    type: 'DISLIKE',
-    id
+    type: 'DELETE',
+    id,
   };
 }
 
@@ -30,6 +30,13 @@ export function likeAction(id: number): IContentAction {
   return {
     type: 'LIKE',
     id,
+  };
+}
+
+export function dislikeAction(id: number): IContentAction {
+  return {
+    type: 'DISLIKE',
+    id
   };
 }
 

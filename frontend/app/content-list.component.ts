@@ -9,7 +9,7 @@ import {
 @Component({
   selector: 'content-list',
   templateUrl: 'app/content-list.html',
-  providers: [ContentStore, ContentService],
+  providers: [ContentStore],
   styleUrls: ['app/content-list.css'],
   // directives: [Content]
 })
@@ -39,5 +39,9 @@ export class ContentList {
       // Log errors if any
       console.log(err);
     })
+  }
+
+  changeUserHandler(userId) {
+    this.contentService.setUserId(userId);
   }
 }

@@ -1,5 +1,5 @@
 import { ContentStore, Content as ContentModel} from './content-store';
-import { dislikeAction, likeAction, addContentAction } from './actions';
+import { dislikeAction, likeAction, addContentAction, deleteContentAction} from './actions';
 import { ContentService } from './content-service';
 import {
   Component,
@@ -16,7 +16,7 @@ import {
   selector: 'content',
   templateUrl: 'app/content.html',
   styleUrls: ['app/content.css'],
-  providers: [ ContentService],
+  providers: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('flyInOut', [
@@ -46,14 +46,18 @@ export class Content {
   constructor(private store: ContentStore, private contentService: ContentService) { }
 
   // mock userId for now
-  userId = '242';
+  // userId = '6934';
 
   likeHandler(content) {
     this.store.dispatch(likeAction(content.id));
     setTimeout( () => {
-      this.contentService.likeContent(content.id, this.userId).subscribe(resp => {
+      this.store.dispatch(deleteContentAction(content.id));
+    }, 1000 );
+
+    setTimeout( () => {
+      this.contentService.likeContent(content.id).subscribe(resp => {
         console.log(resp)
-        let items = resp.items.slice(2, 3);
+        let items = resp.items.slice(0, 1);
 
         for (let item of items) {
           var title = item.title;
@@ -61,18 +65,17 @@ export class Content {
           var summary = item.summary;
           this.store.dispatch(addContentAction(link, title, item.id, summary));
         }
-
       },err => {
         // Log errors if any
         console.log(err);
       })
-    }, 2000 );
+    }, 1000 );
   }
 
   dislikeHandler(content) {
     this.store.dispatch(dislikeAction(content.id));
 
-    this.contentService.dislikeContent(content.id, this.userId).subscribe(resp => {
+    this.contentService.dislikeContent(content.id).subscribe(resp => {
       console.log(resp)
 
       let items = resp.items.slice(3, 4);
@@ -91,7 +94,7 @@ export class Content {
   }
 
   clickHandler(content) {
-    this.contentService.clickContent(content.id, this.userId).subscribe(resp => {},err => {
+    this.contentService.clickContent(content.id).subscribe(resp => {},err => {
       // Log errors if any
       console.log(err);
     })
