@@ -6,8 +6,17 @@ class ContentsController < ApplicationController
   def search
     query = params[:q] || ''
     user_id = params[:uid] || 242
+    test_mode = params[:test]
 
-    recommended_articles = RecommendationApiWrapper.get_recommendation(user_id, query)
+    if test_mode == "random"
+      offset = rand(Article.count)
+      recommended_articles = [
+        Article.offset(offset).first
+      ]
+    else
+      recommended_articles = RecommendationApiWrapper.get_recommendation(user_id, query)
+    end
+
     items = []
     recommended_articles.each do |recommended_article|
       content = ensure_content(user_id, recommended_article)

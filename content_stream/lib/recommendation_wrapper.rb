@@ -8,17 +8,34 @@ class RecommendationApiWrapper
       return []
     end
 
+    title_matched = Article.where('title LIKE ?', "%#{query}%")
+    if title_matched.count != 0
+      return title_matched[0,3]
+    end
+
+    summary_matched = Article.where('title LIKE ?', "%#{query}%")
+    if summary_matched.count != 0
+      return summary_matched[0,3]
+    end
+
+    text_matched = Article.where('text LIKE ?', "%#{query}%")
+    if text_matched.count != 0
+      return text_matched[0,3]
+    end
+
+    puts "NO RECOMMENDATION!!!! return an normal recommandation article"
+    # if no recommandation, return based on keywords search
+
     recommended = user.recommended_articles
     if recommended.length > 0
       return recommended
     end
 
-    puts "NO RECOMMENDATION!!!! return an random article"
-    # if no recommandation, return random articles
-    offset = rand(Article.count)
-    return [
-      Article.offset(offset).first
-    ]
+
+    # offset = rand(Article.count)
+    # return [
+    #   Article.offset(offset).first
+    # ]
   end
 =begin
     items = []
@@ -113,7 +130,8 @@ class RecommendationApiWrapper
   def self.dislike(article_id, user_id)
     article = Article.find_by_id(article_id)
     user = User.find_by_id(user_id)
-    user.dislike(article)
+    # user.dislike(article)
+    user.hide(article)
     Recommendable::Helpers::Calculations.update_similarities_for(user.id.to_s)
     Recommendable::Helpers::Calculations.update_recommendations_for(user.id.to_s)
     return user.recommended_articles

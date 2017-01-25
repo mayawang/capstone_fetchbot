@@ -12,33 +12,38 @@ export class ContentService {
   // private baseUrl: string = 'http://localhost:9080/crawl.json?spider_name=pagespider&url='
 
   private baseUrl: string = 'http://' + API_SERVER + '/'
-
+  private userId: string = "242"
 
   constructor(private http: Http) {
     this.http = http;
   }
 
+  setUserId(userId): void {
+    this.userId = userId;
+  }
+
   getContent(query): Observable<any> {
     return this.http.get( this.baseUrl + 'search' + '?q=' +
-    encodeURIComponent(query))
+    encodeURIComponent(query) + '&uid=' +
+    encodeURIComponent(this.userId))
       .map((response) => response.json());
   }
 
-  likeContent(contentId, userId): Observable<any> {
+  likeContent(contentId): Observable<any> {
     return this.http.post( this.baseUrl + 'like' + '?cid=' +  encodeURIComponent(contentId) + '&uid=' +
-    encodeURIComponent(userId), {})
+    encodeURIComponent(this.userId), {})
       .map((response) => response.json());
   }
 
-  dislikeContent(contentId, userId): Observable<any> {
+  dislikeContent(contentId): Observable<any> {
     return this.http.post( this.baseUrl + 'dislike' + '?cid=' +  encodeURIComponent(contentId) + '&uid='+
-    encodeURIComponent(userId), {})
+    encodeURIComponent(this.userId), {})
       .map((response) => response.json());
   }
 
-  clickContent(contentId, userId): Observable<any> {
+  clickContent(contentId): Observable<any> {
     return this.http.post( this.baseUrl + 'click' + '?cid=' +  encodeURIComponent(contentId) + '&uid='+
-    encodeURIComponent(userId), {})
+    encodeURIComponent(this.userId), {})
         .map((response) => response.json());
   }
 

@@ -1,3 +1,6 @@
+#!/bin/env python
+# -*- coding: utf-8 -*-
+
 from model_article import Articles, Articles2
 
 filename = "delicious_article_dataset.dat"
@@ -18,6 +21,8 @@ with open(filename, 'r') as f:
         bookmark_id = fields[0]
         if not url.startswith("http"):
             continue
+
+        url = url.lower()
 
         total_url_count += 1
 
@@ -41,7 +46,7 @@ correctly_mapped_count = 0
 
 for article in Articles.select():
     if article.link not in url_to_id:
-        # print "cannot map article " + str(article.id) + " url " + str(article.link) + " title " + str(article.title)
+        print "cannot map article " + str(article.id) + " url " + article.link.encode('utf8') + " title " + article.title.encode('utf8')
         continue
 
     new_id_str = url_to_id[article.link]

@@ -19,6 +19,20 @@ export function addContentAction( link: string, title: string, id: number, summa
   };
 }
 
+export function deleteContentAction(id: number): IContentAction {
+  return {
+    type: 'DELETE',
+    id,
+  };
+}
+
+export function likeAction(id: number): IContentAction {
+  return {
+    type: 'LIKE',
+    id,
+  };
+}
+
 export function dislikeAction(id: number): IContentAction {
   return {
     type: 'DISLIKE',
@@ -26,9 +40,9 @@ export function dislikeAction(id: number): IContentAction {
   };
 }
 
-export function likeAction(id: number): IContentAction {
+export function skipAction(id: number): IContentAction {
   return {
-    type: 'LIKE',
+    type: 'SKIP',
     id,
   };
 }

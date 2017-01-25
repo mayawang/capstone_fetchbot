@@ -11,15 +11,25 @@ def fix_python_utf(text)
   end
 end
 
+user_id_map = {}
+article_id_map = {}
+
 File.foreach(user_bookmark_file) do |f|
   row = f.chomp("\n").split("\t")
 
   line_number += 1
 
+  if line_number < 80360
+    next
+  end
+
   user_id = row[0].to_i
-  if User.where(id: user_id).count() > 0
+  if user_id_map[user_id]
+    user = user_id_map[user_id]
+  elsif User.where(id: user_id).count() > 0
     # puts "user #{user_id} already exists"
     user = User.find_by_id(user_id)
+    user_id_map[user_id] = user
   else
     user = User.create(id: user_id)
   end
@@ -27,7 +37,15 @@ File.foreach(user_bookmark_file) do |f|
   puts "line #{line_number}"
 
   article_id = row[1].to_i
-  article = Article.find_by_id(article_id)
+  if article_id_map[article_id]
+    article = article_id_map[article_id]
+  else
+    article = Article.find_by_id(article_id)
+    if article
+      article_id_map[article_id] = article
+    end
+  end
+
   next unless article
 
   # Fix article Python title, and text weirdness
