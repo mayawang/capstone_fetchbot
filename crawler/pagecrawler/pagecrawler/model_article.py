@@ -9,12 +9,14 @@ class Articles(Model):
     link = CharField()
     summary = CharField()
     keywords = CharField()
-    text = CharField()
+    text = TextField()
+
     created_at = DateTimeField(default=datetime.datetime.now)
     updated_at = DateTimeField(default=datetime.datetime.now)
 
     class Meta:
         database = db
+        db_table = "articles_raw"
 
 
 class Articles2(Model):
@@ -28,6 +30,7 @@ class Articles2(Model):
 
     class Meta:
         database = db
+        db_table = "articles"
 
 if __name__ == "__main__":
     try:

@@ -4,37 +4,39 @@ from pagecrawler.model_article import Articles
 
 class ArticleSpider(scrapy.Spider):
     name = "articlespider"
-    filename = "delicious_article_dataset.dat"
-    # load url in bookmarks from dataset
-    start_urls = []
-    crawled_urls = {}
-    # url_count = 100
+
     counter = 0
     written_counter = 0
+    crawled_urls = {}
 
-    with open(filename, 'r') as f:
-        for row in f:
+    def start_requests(self):
+        filename = "delicious_article_dataset.dat"
 
-        #     url_count -= 1
-        #     if url_count <= 0:
-        #        break
+        row_number = 0
+        with open(filename, 'r') as f:
+            for row in f:
 
-            fields = row.split("\t")
-            if not fields[3].startswith("http"):
-                continue
+                #     url_count -= 1
+                #     if url_count <= 0:
+                #        break
 
-            start_urls.append(fields[3])
-            print "field:" + fields[3]
+                fields = row.split("\t")
+                url = fields[3]
+                id = fields[0]
+                if not url.startswith("http"):
+                    continue
 
-    print start_urls
+                row_number += 1
+
+                yield scrapy.Request(url, meta={'id': id}, callback=self.parse)
 
     def parse(self, response):
-        items = []
         return self.parse_article(response)
 
     def parse_article(self, response):
+        article_original_id = int(response.meta['id'])
+        self.log("==========Scraping:========= " + response.url + " original id " + str(article_original_id))
 
-        self.log("==========Scraping:========= " + response.url)
         item = ArticlecrawlerItem()
 
         ArticleSpider.counter += 1
@@ -50,11 +52,11 @@ class ArticleSpider(scrapy.Spider):
         if len(item['title']) == 0:
             return
 
-        title = item['title'][0]
-        link = response.url.lower()
-
-        if link.startswith("https://www.youtube.com/"):
+        title = item['title'][0].strip()
+        if len(title) == 0:
             return
+
+        link = response.url.lower()
 
         if link in ArticleSpider.crawled_urls:
             return
@@ -65,7 +67,7 @@ class ArticleSpider(scrapy.Spider):
         if len(item['summary']) == 0:
             return
 
-        summary = item['summary'][0].rstrip('\r\n')
+        summary = item['summary'][0].rstrip('\r\n').strip()
         if len(summary) == 0:
             return
 
@@ -77,11 +79,12 @@ class ArticleSpider(scrapy.Spider):
             return
 
         text = ' '.join(item['text'])
+        text = text.strip()
         if len(text) < 10:
             return
 
         print "createing article"
         ArticleSpider.written_counter += 1
-        article = Articles.create(title=title, link=link, summary=summary, keywords=keywords, text=text)
-        print "########################### " + str(ArticleSpider.counter) + "/" + str(len(ArticleSpider.start_urls)) + " written " + str(ArticleSpider.written_counter) +  "  #################################"
+        article = Articles.create(id = article_original_id, title=title, link=link, summary=summary, keywords=keywords, text=text)
+        print "########################### " + str(ArticleSpider.counter) + " written " + str(ArticleSpider.written_counter) +  "  #################################"
         # yield item
