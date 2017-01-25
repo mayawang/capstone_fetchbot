@@ -26,15 +26,15 @@ import {
           opacity: 0.1,
           transform: 'translateX(-100%)'
         }),
-        animate('0.5s ease-in'),
+        animate('0.8s ease-in-out'),
       ]),
-      transition('* => void', [
-        style({
-          opacity: 0.1,
-          transform: 'translateX(100%)'
-        }),
-        animate('0.5s ease-out'),
-      ]),
+      // transition('* => void', [
+      //   style({
+      //     opacity: 0.1,
+      //     transform: 'translateX(100%)'
+      //   }),
+      //   animate('0.5s ease-in-out'),
+      // ]),
     ])
   ],
 })
@@ -52,7 +52,7 @@ export class Content {
     this.store.dispatch(likeAction(content.id));
     setTimeout( () => {
       this.store.dispatch(deleteContentAction(content.id));
-    }, 1000 );
+    }, 1500 );
 
     setTimeout( () => {
       this.contentService.likeContent(content.id).subscribe(resp => {
@@ -69,7 +69,7 @@ export class Content {
         // Log errors if any
         console.log(err);
       })
-    }, 1000 );
+    }, 1500 );
   }
 
   dislikeHandler(content) {
