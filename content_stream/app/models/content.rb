@@ -7,6 +7,9 @@ class Content < ApplicationRecord
   RATE_UNKNOWN = 0
 
   def to_frontend_hash
+    unless self.id
+      puts "content has NO ID!!!!!!!! user_id #{self.user_id} article_id #{self.article_id}"
+    end
     return {
       id: self.id,
       title: self.title,

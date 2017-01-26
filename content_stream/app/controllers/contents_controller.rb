@@ -73,7 +73,7 @@ class ContentsController < ApplicationController
   end
 
   def ensure_content(user_id, article)
-    puts "ensure content for user_id #{user_id} #{article}"
+    puts "ensure content for user_id #{user_id} article #{article.id}"
     existing_content = Content.where({
       user_id: user_id,
       article_id: article.id,
@@ -81,7 +81,7 @@ class ContentsController < ApplicationController
 
     return existing_content if existing_content
 
-    puts "creating new content for user_id #{user_id} #{article}"
+    puts "creating new content for user_id #{user_id} article #{article.id}"
     return Content.create({
       user_id:      user_id,
       article_id:   article.id,
