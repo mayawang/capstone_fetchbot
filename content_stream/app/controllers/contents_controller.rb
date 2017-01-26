@@ -46,7 +46,7 @@ class ContentsController < ApplicationController
 
     unless content
       puts "Unable to find content #{content_id}"
-      return render :json => {item: []}.as_json
+      return render :json => {items: []}.as_json
     end
 
     content.rates = Content::RATE_LIKE
@@ -63,7 +63,7 @@ class ContentsController < ApplicationController
 
     unless content
       puts "Unable to find content #{content_id}"
-      return render :json => {item: []}.as_json
+      return render :json => {items: []}.as_json
     end
 
     content.rates = Content::RATE_DISLIKE
@@ -81,6 +81,7 @@ class ContentsController < ApplicationController
 
     return existing_content if existing_content
 
+    puts "creating new content for user_id #{user_id} #{article}"
     return Content.create({
       user_id:      user_id,
       article_id:   article.id,
@@ -88,25 +89,21 @@ class ContentsController < ApplicationController
       link:         article.link,
       summary:      article.summary,
       keywords:     article.keywords,
-      text:         article.text,
     })
   end
 
   def like_dislike_helper(user_id, content_id, is_like)
-
-    User.find_each do |user|
-      user_id = user.id
-    end
-
-    user_id = params[:uid]
-    content_id = params[:cid]
-
     content = Content.find_by_id(content_id)
 
     user = User.find_by_id(user_id)
 
     unless user
       puts "Unable to find user #{user_id}"
+      return []
+    end
+
+    unless content
+      puts "Unable to find content #{content_id}"
       return []
     end
 
@@ -117,7 +114,6 @@ class ContentsController < ApplicationController
       content.delete
       return []
     end
-
 
     if is_like
       recommended_articles = RecommendationApiWrapper.like(article_id, user_id)
