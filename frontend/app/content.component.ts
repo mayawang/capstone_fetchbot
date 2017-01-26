@@ -34,22 +34,24 @@ export class Content {
     this.contentService.likeContentById(likedContentId)
 
     setTimeout(() => {
+      var contentIndex = this.contentService.findIndexById(content.id);
       this.contentService.deleteContentById(likedContentId);
       this.contentService.likeContent(likedContentId).subscribe(resp => {
         // console.log(resp)
-        this.contentService.addOneNonRepeatingContent(resp.items);
+        this.contentService.addOneNonRepeatingContentAt(resp.items, contentIndex);
       },err => {
         // Log errors if any
         console.log(err);
       })
-    }, 1500 );
+    }, 500 );
   }
 
   dislikeHandler(content) {
+    var contentIndex = this.contentService.findIndexById(content.id);
     this.contentService.deleteContentById(content.id);
     this.contentService.dislikeContent(content.id).subscribe(resp => {
       // console.log(resp)
-      this.contentService.addOneNonRepeatingContent(resp.items);
+      this.contentService.addOneNonRepeatingContentAt(resp.items, contentIndex);
     },err => {
       // Log errors if any
       console.log(err);

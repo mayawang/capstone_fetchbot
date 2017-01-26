@@ -5,13 +5,12 @@ import { Content } from './content.component';
 
 import 'rxjs/add/operator/map'
 
-var API_SERVER = 'localhost:9980';
+var API_SERVER = 'http://localhost:9980';
+// var API_SERVER = 'https://fetchbot-content-stream.herokuapp.com/ '
 
 @Injectable()
 export class ContentService {
-  // private baseUrl: string = 'http://localhost:9080/crawl.json?spider_name=pagespider&url='
-
-  private baseUrl: string = 'http://' + API_SERVER + '/'
+  private baseUrl: string = API_SERVER + '/'
   private userId: string = "242"
   private contents: any[] = []
 
@@ -55,21 +54,21 @@ export class ContentService {
     this.contents[index].like = false;
   }
 
-  addOneNonRepeatingContent(items): void {
+  addOneNonRepeatingContentAt(items, index): void {
     var added = false;
     for (let item of items) {
       if (this.hasContentId(item.id)) {
         continue;
       }
 
-      this.addContent(item);
+      this.contents.splice(index, 0, item);
       added = true;
       break;
     }
 
     if (!added) {
       // non-added, to ensure we do not reduce content by one , we just add the first one
-      this.addContent(items[0]);
+      this.contents.splice(index, 0, items[0]);
     }
   }
 
