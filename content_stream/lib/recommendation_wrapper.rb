@@ -106,9 +106,17 @@ class RecommendationApiWrapper
   def self.like(article_id, user_id)
     article = Article.find_by_id(article_id)
     user = User.find_by_id(user_id)
+
     unless user
-      puts "NOT user found for id #{user_id}"
+      puts "NO user found for id #{user_id}"
+      return []
     end
+
+    unless article
+      puts "NO article found for id #{article_id}"
+      return []
+    end
+
     user.like(article)
     Recommendable::Helpers::Calculations.update_similarities_for(user.id.to_s)
     Recommendable::Helpers::Calculations.update_recommendations_for(user.id.to_s)
@@ -130,6 +138,17 @@ class RecommendationApiWrapper
   def self.dislike(article_id, user_id)
     article = Article.find_by_id(article_id)
     user = User.find_by_id(user_id)
+
+    unless user
+      puts "NO user found for id #{user_id}"
+      return []
+    end
+
+    unless article
+      puts "NO article found for id #{article_id}"
+      return []
+    end
+
     # user.dislike(article)
     user.hide(article)
     Recommendable::Helpers::Calculations.update_similarities_for(user.id.to_s)
