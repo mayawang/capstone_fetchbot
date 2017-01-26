@@ -18,53 +18,26 @@ import {
   styleUrls: ['app/content.css'],
   providers: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger('flyInOut', [
-      state('in', style({opacity: 1, transform: 'translateX(0)'})),
-      transition('void => *', [
-        style({
-          opacity: 0.1,
-          transform: 'translateX(-100%)'
-        }),
-        animate('0.8s ease-in-out'),
-      ]),
-      // transition('* => void', [
-      //   style({
-      //     opacity: 0.1,
-      //     transform: 'translateX(100%)'
-      //   }),
-      //   animate('0.5s ease-in-out'),
-      // ]),
-    ])
-  ],
 })
 
 export class Content {
   @Input()
   content: ContentModel;
 
-  constructor(private store: ContentStore, private contentService: ContentService) { }
+  constructor(private contentService: ContentService) { }
 
   // mock userId for now
   // userId = '6934';
 
   likeHandler(content) {
-    this.store.dispatch(likeAction(content.id));
-    setTimeout( () => {
-      this.store.dispatch(deleteContentAction(content.id));
-    }, 1500 );
+    var likedContentId = content.id;
+    this.contentService.likeContentById(likedContentId)
 
-    setTimeout( () => {
-      this.contentService.likeContent(content.id).subscribe(resp => {
-        console.log(resp)
-        let items = resp.items.slice(0, 1);
-
-        for (let item of items) {
-          var title = item.title;
-          var link = item.link;
-          var summary = item.summary;
-          this.store.dispatch(addContentAction(link, title, item.id, summary));
-        }
+    setTimeout(() => {
+      this.contentService.deleteContentById(likedContentId);
+      this.contentService.likeContent(likedContentId).subscribe(resp => {
+        // console.log(resp)
+        this.contentService.addOneNonRepeatingContent(resp.items);
       },err => {
         // Log errors if any
         console.log(err);
@@ -73,20 +46,10 @@ export class Content {
   }
 
   dislikeHandler(content) {
-    this.store.dispatch(dislikeAction(content.id));
-
+    this.contentService.deleteContentById(content.id);
     this.contentService.dislikeContent(content.id).subscribe(resp => {
-      console.log(resp)
-
-      let items = resp.items.slice(3, 4);
-
-      for (let item of items) {
-        var title = item.title;
-        var link = item.link;
-        var summary = item.summary;
-        this.store.dispatch(addContentAction(link, title, item.id, summary));
-      }
-
+      // console.log(resp)
+      this.contentService.addOneNonRepeatingContent(resp.items);
     },err => {
       // Log errors if any
       console.log(err);

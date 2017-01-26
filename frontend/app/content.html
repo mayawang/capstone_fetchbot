@@ -1,9 +1,9 @@
-<section class="content-container" [@flyInOut]="'in'">
+<section class="content-container">
 	<!-- <i class="fa fa-user fa-2x content-icon"></i> -->
 	<div class="content-info">
 		<h3 class="heading--title"><a href={{content.link}} target="_blank" class="no-underline" (click)="clickHandler(content)">{{ content.title }}</a></h3>
 		<!-- <i class="fa fa-phone"></i> -->
-		<div class="content"> {{ content.summary }}</div>
+		<div class="content-summary"> {{ content.summary }}</div>
 	</div>
 	<button class="content-action-like" (click)="likeHandler(content)">
 		<i class="fa fa-2x" [class.fa-heart]="content.like" [class.fa-heart-o]="!content.like"></i>

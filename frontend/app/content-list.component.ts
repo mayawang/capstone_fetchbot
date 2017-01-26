@@ -4,36 +4,49 @@ import { addContentAction, skipAction} from './actions';
 import { ContentService } from './content-service';
 import {
   Component,
+  trigger,
+  state,
+  style,
+  transition,
+  animate
 } from '@angular/core';
 
 @Component({
   selector: 'content-list',
   templateUrl: 'app/content-list.html',
-  providers: [ContentStore],
+  providers: [],
   styleUrls: ['app/content-list.css'],
   // directives: [Content]
+  animations: [
+    trigger('slideInOut', [
+      state('in', style({
+        transform: 'translate3d(0,0,-30px)'
+      })),
+      transition('void => *', [
+        style({transform: 'translate3d(-100%,0,0)'}),
+        animate(400)
+      ]),
+      transition('* => void', [
+        animate(400, style({transform: 'translateX(100%)'}))
+      ])
+    ])
+  ],
 })
 
 export class ContentList {
 
-	constructor(private store: ContentStore, private contentService: ContentService) {
+	constructor(private contentService: ContentService) {
 	}
 
   addContentHandler(query) {
-    this.store.contents.map((content) => {
-        this.store.dispatch(skipAction(content.id));
-    });
+    this.contentService.clearAllContents();
 
     this.contentService.getContent(query).subscribe(resp => {
-      console.log(resp)
-
-      let items = resp.items.slice(0,3);
+      // console.log(resp)
+      let items = resp.items;
 
       for (let item of items) {
-        var title = item.title;
-        var link = item.link;
-        var summary = item.summary;
-        this.store.dispatch(addContentAction(link, title, item.id, summary));
+        this.contentService.addContent(item);
       }
     },err => {
       // Log errors if any
