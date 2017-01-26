@@ -2,7 +2,8 @@ require 'redis'
 
 Recommendable.configure do |config|
   # Recommendable's connection to Redis
-  config.redis = Redis.new(:host => 'localhost', :port => 6379, :db => 0)
+  redis_host = ENV['REDIS_HOST'] || 'localhost'
+  config.redis = Redis.new(:host => redis_host, :port => 6379, :db => 0)
 
   config.orm = :active_record
 
