@@ -43,7 +43,7 @@ Content.all.each do |content|
   end
 end
 
-User.find_each do |user|
+User.all.each do |user|
   puts "user: #{user.id}"
   Recommendable::Helpers::Calculations.update_similarities_for(user.id.to_s)
   Recommendable::Helpers::Calculations.update_recommendations_for(user.id.to_s)
