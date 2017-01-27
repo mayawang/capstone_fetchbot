@@ -31,19 +31,29 @@ export class Content {
 
   likeHandler(content) {
     var likedContentId = content.id;
-    this.contentService.likeContentById(likedContentId)
+    this.contentService.likeContentById(likedContentId);
+    var contentIndex = this.contentService.findIndexById(content.id);
 
-    setTimeout(() => {
-      var contentIndex = this.contentService.findIndexById(content.id);
-      this.contentService.deleteContentById(likedContentId);
-      this.contentService.likeContent(likedContentId).subscribe(resp => {
-        // console.log(resp)
-        this.contentService.addOneNonRepeatingContentAt(resp.items, contentIndex);
-      },err => {
-        // Log errors if any
-        console.log(err);
-      })
-    }, 500 );
+    var expectedAnimationTime = (new Date().getTime()) + 500;
+
+    this.contentService.likeContent(likedContentId).subscribe(resp => {
+      var currentTime = new Date().getTime();
+      var delay = expectedAnimationTime - currentTime;
+      if (delay < 0) {
+        delay  = 0;
+      }
+
+      setTimeout(() => {
+        this.contentService.deleteContentById(likedContentId);
+
+        setTimeout(() => {
+          this.contentService.addOneNonRepeatingContentAt(resp.items, contentIndex);
+        }, 400);
+      }, delay);
+    },err => {
+      // Log errors if any
+      console.log(err);
+    })
   }
 
   dislikeHandler(content) {
