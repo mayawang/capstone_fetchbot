@@ -6,7 +6,7 @@ import { Content } from './content.component';
 import 'rxjs/add/operator/map'
 
 var API_SERVER = 'http://localhost:9980';
-// var API_SERVER = 'https://fetchbot-content-stream.herokuapp.com/ '
+// var API_SERVER = 'https://fetchbot-content-stream.herokuapp.com'
 
 @Injectable()
 export class ContentService {

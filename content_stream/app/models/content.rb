@@ -8,8 +8,13 @@ class Content < ApplicationRecord
 
   def to_frontend_hash
     unless self.id
+      self.reload
+    end
+
+    unless self.id
       puts "content has NO ID!!!!!!!! user_id #{self.user_id} article_id #{self.article_id}"
     end
+
     return {
       id: self.id,
       title: self.title,
