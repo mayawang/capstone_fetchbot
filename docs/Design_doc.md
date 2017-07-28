@@ -14,7 +14,7 @@ You can train your Fetchbot by marking the article as “like” or “dislike�
 (Read [more detailed user stories](https://github.com/mayawang/capstone_fetchbot/blob/master/docs/user_stories.md))
 
 ## Architectural Design:
-![Image of Architecture Diagram](https://github.com/mayawang/capstone_fetchbot/blob/master/docs/assets/Fetchbot%20architecture%20diagram.png)
+![Image of Architecture Diagram](https://github.com/mayawang/capstone_fetchbot/blob/master/docs/assets/Fetchbot_architecture_diagram.png)
 
 ### WebUI:
 ![Image of WebUI](https://github.com/mayawang/capstone_fetchbot/blob/master/docs/assets/Fetchbot_WebUI.png)
