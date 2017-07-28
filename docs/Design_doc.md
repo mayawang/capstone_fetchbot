@@ -11,16 +11,16 @@ You can train your Fetchbot by marking the article as “like” or “dislike�
 - Casual readers
 - Not focused on time-sensitive content
 - Need quality and individualized content with a clean interface
-(Read more detailed user stories)
+(Read [more detailed user stories](https://github.com/mayawang/capstone_fetchbot/blob/master/docs/user_stories.md))
 
 ## Architectural Design:
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![Image of Architecture Diagram](https://github.com/mayawang/capstone_fetchbot/blob/master/docs/assets/Fetchbot%20architecture%20diagram.png)
 
 ### WebUI:
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-AngularJS 2 with TypeScript
-Single-page Model-View-ViewModel design
-Talks to Content Stream Service through REST-like API
+![Image of WebUI](https://github.com/mayawang/capstone_fetchbot/blob/master/docs/assets/Fetchbot_WebUI.png)
+- AngularJS 2 with TypeScript
+- Single-page Model-View-ViewModel design
+- Talks to Content Stream Service through REST-like API
 
 ### Content Stream Service:(Rails API)
 #### Search
@@ -115,7 +115,7 @@ Once an article is disliked, it will never appear in the recommendation again
   - Extract web page data is saved to PostgreSQL as Articles
 
 ## Entity-Relation Diagram
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![Image of ERD](https://github.com/mayawang/capstone_fetchbot/blob/master/docs/assets/Fetchbot_ERD.png)
 
 ## Technical Decisions and Considerations:
 ### Why use recommendable
