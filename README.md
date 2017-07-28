@@ -7,7 +7,7 @@ Fetchbot is a personalized content stream that fetches articles you'll love on t
 You can train your Fetchbot by marking the article as “like” and “dislike”. The more feedback an user feeds to Fetchbot, the better results Fetchbot can gives back.
 
 ## Feature Set:
-1. Useable UI:
+1. Web UI:
   -  User Authentication
   -  content display
   -  user preference gathering
