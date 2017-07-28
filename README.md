@@ -4,7 +4,7 @@ Fetchbot is a personalized content stream that fetches articles you’ll love on
 You can train your Fetchbot by marking the article as “like” or “dislike”. The more feedback a user feeds to Fetchbot, the better results Fetchbot can gives back.
 
 - Check out [Demo Video](https://youtu.be/cxbzO0MGIZM)
-  - user ID input bar on top is a temporary work around to simulate experience for different users
+  - User ID input bar on top is a temporary work around to simulate experience for different users
   - The user ID are from demo dataset
   - This could be replaced by proper authentication
 
@@ -118,7 +118,7 @@ Once an article is disliked, it will never appear in the recommendation again
   - For each user, record user’s set of liked articles and disliked articles
   - When a user dislike an article, we also hide this article from this user so that it never appears in recommendation for this user.
   - When generating recommendation for a user, use Jaccardian similarity for find users with similar tastes and return these users’ liked articles.
-  - Recommendable uses Redis to store users’ liked and disliked articles. It also uses Redis’ set operation to perform Jaccardian similarity operation efficiently
+  - Recommendable uses Redis to store users’ liked and disliked articles. It also uses Redis’ set operation to perform Jaccardian similarity operation efficiently.
 
 #### Crawler [Python Scrapy](https://scrapy.org/)
 - We only have URLs from the deli.ci.ous data set, therefore we need to crawl the actual content from Internet using a crawler
@@ -171,7 +171,7 @@ Once an article is disliked, it will never appear in the recommendation again
 - [Deli.ci.ous bookmarks dataset](https://grouplens.org/datasets/hetrec-2011/)(2011)
 - 1800+ users
 - 69,000+ articles (URLs)
-- Initially, I built a crawler to scrape new contents to my recommender system. However, collaborative filtering requires a large user preference dataset to has its best effect. Because I don’t have any user to start with. I need to find a dataset to test run my algorithm. It is hard to find a real dataset that represents user’s reading habits. Fortunately, I found Deli.ci.ous bookmarks dataset (2011) with more than eighteen hundred users (1800+) bookmarking more than sixty-nine thousand (69,000) articles. I considered user’s bookmark as indication that user likes this article. After I imported the dataset into my system, I can see collaborative filtering algorithm start working.
+- Initially, I built a crawler to scrape new contents to my recommender system. However, collaborative filtering requires a large user preference dataset to has its best effect. Because I don’t have any user to start with. I need to find a dataset to test run my algorithm. It is hard to find a real dataset that represents user’s reading habits. Fortunately, I found Deli.ci.ous bookmarks dataset (2011) with more than eighteen hundred users (1800+) bookmarking more than sixty-nine thousand (69,000) articles. I considered user’s bookmark as indication that user likes this article. After I imported the dataset into my system, I can see collaborative filtering algorithm [start working]([Demo Video](https://youtu.be/cxbzO0MGIZM).
 
 ## Future Improvements:
 - Better Content-based recommendation
