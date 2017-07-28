@@ -3,6 +3,11 @@
 Fetchbot is a personalized content stream that fetches articles you’ll love on the internet and continually evolves with your tastes.
 You can train your Fetchbot by marking the article as “like” or “dislike”. The more feedback a user feeds to Fetchbot, the better results Fetchbot can gives back.
 
+- Check out [Demo Video](https://youtu.be/cxbzO0MGIZM)
+  - user ID input bar on top is a temporary work around to simulate experience for different users
+  - The user ID are from demo dataset
+  - This could be replaced by proper authentication
+
 ## Problem Statement:
 - Content aggregator sites are too busy and noisy
 - Not tailored to individual tastes
@@ -12,6 +17,16 @@ You can train your Fetchbot by marking the article as “like” or “dislike�
 - Not focused on time-sensitive content
 - Need quality and individualized content with a clean interface
 (Read [more detailed user stories](https://github.com/mayawang/capstone_fetchbot/blob/master/docs/user_stories.md))
+
+## Tech Stack:
+- Frontend:
+  - Web UI: [Angular2](https://angular.io/) + [TypeScript](https://www.typescriptlang.org/)
+- Backend:
+  - User Content Stream Service API: [Ruby on Rails](http://rubyonrails.org/)
+  - User Preference Database: [Redis](https://redis.io/)
+  - Content Recommendation: [Recommendable](https://github.com/davidcelis/recommendable)
+  - Crawler: Python [Scrapy](https://scrapy.org/)
+  - Scraped Content Database: [PostgresSQL](https://www.postgresql.org/)
 
 ## Architectural Design:
 ![Image of Architecture Diagram](https://github.com/mayawang/capstone_fetchbot/blob/master/docs/assets/Fetchbot_architecture_diagram.png)
@@ -144,7 +159,7 @@ Once an article is disliked, it will never appear in the recommendation again
   - Our product is different than music recommendation because user rarely want to read an article twice where as a user would very likely to want to listen to a liked music many times. Therefore we do not need to differentiate user’s feedback from skip (not interested for now) and dislike/hate/never-show-again.
   - Instead, we could add a feature to let users to revisit a list of liked articles.
   - Also, in this way, we can encourage user to provide more effective feedbacks(like/dislike) for recommendation algorithms to work with.
-- **Whether there should be channels**
+- **Whether there should be "channels"**
   - We could have a channel feature that is similar to “Station” in Pandora.
   - Each channel could be focused on a single topic.
   - This could improves intra-channel content cohesion.
