@@ -118,7 +118,7 @@ Once an article is disliked, it will never appear in the recommendation again
 ![Image of ERD](https://github.com/mayawang/capstone_fetchbot/blob/master/docs/assets/Fetchbot_ERD.png)
 
 ## Technical Decisions and Considerations:
-### Why use recommendable
+### Why use Recommendable
 - Recommendable: https://github.com/davidcelis/recommendable
   - Algorithms: Jaccardian similarity of users preferences
   - Implementation: Ruby
@@ -126,35 +126,37 @@ Once an article is disliked, it will never appear in the recommendation again
 - Surprise: http://surpriselib.com/
   - Algorithms: Matrix factorization algorithms: e.g. SVD
   - Implementation: Python
-  - Updating recommendation requires rerun whole user preference data set
+  - **Updating recommendation requires rerun whole user preference data set**
+- Conclusion:
   - **We would like to update user’s recommendation immediately after user’s preference feedback, therefore recommendable is a better choice here.**
 
 ## Business Decisions:
-- How to solve the “cold start” problem
+- **How to solve the “cold start” problem**
   - Initially we don’t know what users like or dislike.
   - User probably already has articles to they want to read in mind, therefore showing random articles does not seem to be useful.
   - We also considered showing the top N popular articles from all users. But it does not deliver a personalized product experience.
   - We decided to give user a search box and let user browse search results and mark article with like or dislike.
   - We could also add a “select your interests” step when user first come to our site.
-- Whether there should be a  “skip/swipe to dismiss” feature
+- **Whether there should be a “skip/swipe to dismiss” feature**
   - We could have a Skip/Swipe to dismiss feature to allow users who are indifferent(not interested but not to the extend of dislike) to the article to skip the article.
   - Pandora has similar feature to allow users to skip music.
   - We decided not implement this feature and only keep “like” and “dislike”.
   - Our product is different than music recommendation because user rarely want to read an article twice where as a user would very likely to want to listen to a liked music many times. Therefore we do not need to differentiate user’s feedback from skip (not interested for now) and dislike/hate/never-show-again.
   - Instead, we could add a feature to let users to revisit a list of liked articles.
   - Also, in this way, we can encourage user to provide more effective feedbacks(like/dislike) for recommendation algorithms to work with.
-- Whether there should be channels
+- **Whether there should be channels**
   - We could have a channel feature that is similar to “Station” in Pandora.
   - Each channel could be focused on a single topic.
   - This could improves intra-channel content cohesion.
   - However channel feature will complicate UX by having multiple article lists for user to choose from.
   - For leisure + discovery reading multiple channels are not really necessary.
   - For now, we decide to drop the channel feature to keep UX simple and focused.
+
 ## Demo Data Set:
 - [Deli.ci.ous bookmarks dataset](https://grouplens.org/datasets/hetrec-2011/)(2011)
 - 1800+ users
 - 69,000+ articles (URLs)
-Initially, I built a crawler to scrape new contents to my recommender system. However, collaborative filtering requires a large user preference dataset to has its best effect. Because I don’t have any user to start with. I need to find a dataset to test run my algorithm. It is hard to find a real dataset that represents user’s reading habits. Fortunately, I found Deli.ci.ous bookmarks dataset (2011) with more than eighteen hundred users (1800+) bookmarking more than sixty-nine thousand (69,000) articles. I considered user’s bookmark as indication that user likes this article. After I imported the dataset into my system, I can see collaborative filtering algorithm start working.
+- Initially, I built a crawler to scrape new contents to my recommender system. However, collaborative filtering requires a large user preference dataset to has its best effect. Because I don’t have any user to start with. I need to find a dataset to test run my algorithm. It is hard to find a real dataset that represents user’s reading habits. Fortunately, I found Deli.ci.ous bookmarks dataset (2011) with more than eighteen hundred users (1800+) bookmarking more than sixty-nine thousand (69,000) articles. I considered user’s bookmark as indication that user likes this article. After I imported the dataset into my system, I can see collaborative filtering algorithm start working.
 
 ## Future Improvements:
 - Better Content-based recommendation
