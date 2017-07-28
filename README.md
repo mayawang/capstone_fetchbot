@@ -18,7 +18,7 @@ You can train your Fetchbot by marking the article as “like” or “dislike�
 - Need quality and individualized content with a clean interface
 (Read [more detailed user stories](https://github.com/mayawang/capstone_fetchbot/blob/master/docs/user_stories.md))
 
-## Tech Stack:
+## Technology Stack:
 - Frontend:
   - Web UI: [Angular2](https://angular.io/) + [TypeScript](https://www.typescriptlang.org/)
 - Backend:
@@ -26,7 +26,7 @@ You can train your Fetchbot by marking the article as “like” or “dislike�
   - User Preference Database: [Redis](https://redis.io/)
   - Content Recommendation: [Recommendable](https://github.com/davidcelis/recommendable)
   - Crawler: Python [Scrapy](https://scrapy.org/)
-  - Scrapted Content Database: [PostgresSQL](https://www.postgresql.org/)
+  - Scraped Content Database: [PostgresSQL](https://www.postgresql.org/)
 
 ## Architectural Design:
 ![Image of Architecture Diagram](https://github.com/mayawang/capstone_fetchbot/blob/master/docs/assets/Fetchbot_architecture_diagram.png)
@@ -132,20 +132,7 @@ Once an article is disliked, it will never appear in the recommendation again
 ## Entity-Relation Diagram
 ![Image of ERD](https://github.com/mayawang/capstone_fetchbot/blob/master/docs/assets/Fetchbot_ERD.png)
 
-## Technical Decisions and Considerations:
-### Why use Recommendable
-- Recommendable: https://github.com/davidcelis/recommendable
-  - Algorithms: Jaccardian similarity of users preferences
-  - Implementation: Ruby
-  - **Can efficiently update recommendation after each new user input**
-- Surprise: http://surpriselib.com/
-  - Algorithms: Matrix factorization algorithms: e.g. SVD
-  - Implementation: Python
-  - **Updating recommendation requires rerun whole user preference data set**
-- Conclusion:
-  - **We would like to update user’s recommendation immediately after user’s preference feedback, therefore recommendable is a better choice here.**
-
-## Business Decisions:
+## Business Decisions
 - **How to solve the “cold start” problem**
   - Initially we don’t know what users like or dislike.
   - User probably already has articles to they want to read in mind, therefore showing random articles does not seem to be useful.
@@ -168,10 +155,40 @@ Once an article is disliked, it will never appear in the recommendation again
   - For now, we decide to drop the channel feature to keep UX simple and focused.
 
 ## Demo Data Set:
-- [Deli.ci.ous bookmarks dataset](https://grouplens.org/datasets/hetrec-2011/)(2011)
-- 1800+ users
-- 69,000+ articles (URLs)
-- Initially, I built a crawler to scrape new contents to my recommender system. However, collaborative filtering requires a large user preference dataset to has its best effect. Because I don’t have any user to start with. I need to find a dataset to test run my algorithm. It is hard to find a real dataset that represents user’s reading habits. Fortunately, I found Deli.ci.ous bookmarks dataset (2011) with more than eighteen hundred users (1800+) bookmarking more than sixty-nine thousand (69,000) articles. I considered user’s bookmark as indication that user likes this article. After I imported the dataset into my system, I can see collaborative filtering algorithm [start working]([Demo Video](https://youtu.be/cxbzO0MGIZM).
+  - [Deli.ci.ous bookmarks dataset](https://grouplens.org/datasets/hetrec-2011/)(2011)
+  - 1800+ users
+  - 69,000+ articles (URLs)
+  - Initially, I built a crawler to scrape new contents to my recommender system. However, collaborative filtering requires a large user preference dataset to has its best effect. Because I don’t have any user to start with. I need to find a dataset to test run my algorithm. It is hard to find a real dataset that represents user’s reading habits. Fortunately, I found Deli.ci.ous bookmarks dataset (2011) with more than eighteen hundred users (1800+) bookmarking more than sixty-nine thousand (69,000) articles. I considered user’s bookmark as indication that user likes this article. After I imported the dataset into my system, I can see collaborative filtering algorithm [start working]([Demo Video](https://youtu.be/cxbzO0MGIZM).
+
+## Technical Decisions and Considerations:
+### Rails Web App vs Rich Client JavaScript App
+- Rails Web App can be combined with the Rails API backend to reduce implementation footprint.
+- However a Rich Client JavaScript app will have more responsive look and feel for users. Therefore we chose to use AngularJS to implement a rich client for improved UX.
+
+### Recommendation Engine Considerations
+- Recommendable: https://github.com/davidcelis/recommendable
+  - Algorithms: Jaccardian similarity of users preferences
+  - Implementation: Ruby
+  - **Can efficiently update recommendation after each new user input**
+- Surprise: http://surpriselib.com/
+  - Algorithms: Matrix factorization algorithms: e.g. SVD
+  - Implementation: Python
+  - **Updating recommendation requires rerun whole user preference data set**
+- Conclusion:
+  - **We would like to update user’s recommendation immediately after user’s preference feedback, therefore recommendable is a better choice here.**
+
+### Crawler Considerations
+- Current crawler is a single machine, multi-threaded implementation.
+- We can easily achieve ~ 10 pages per second crawling speeding on development laptop.
+- This is good enough for our demo data.
+
+### Database Considerations
+- Our demo data only have ~ 100 thousand articles and we only store ~ 1 KB actual data for each article.
+- Our demo data have ~ 2000 users.
+- Given that this is not a production website, expected query per second is very low.
+- PostgreSQL is perfectly capable of supporting such data size and query volume.
+- User preference data is stored in Redis. Redis is memory-based database. We only store the article ID for articles that user has liked/disliked. Therefore, the memory consumption for a ~ 2000 user preference database is also small for the demo.
+- If we need to productionize this design. We have to use more scalable database for the article data and think of a more scalable scheme for storing user preference data.
 
 ## Future Improvements:
 - Better Content-based recommendation
